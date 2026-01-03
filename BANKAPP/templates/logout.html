@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logout Confirmation</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .logout-box {
+            background-color: white;
+            padding: 30px 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .logout-box h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .logout-box .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .logout-box .buttons a {
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .logout-box .buttons .yes {
+            background-color: #e74c3c;
+        }
+
+        .logout-box .buttons .no {
+            background-color: #3498db;
+        }
+
+        .logout-box .buttons a:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logout-box">
+        <h2>Are you sure you want to logout?</h2>
+        <div class="buttons">
+            <a href="{{ url_for('index') }}" class="yes">Yes</a>
+            <a href="{{ url_for('home') }}" class="no">Cancel</a>
+        </div>
+    </div>
+
+</body>
+</html>

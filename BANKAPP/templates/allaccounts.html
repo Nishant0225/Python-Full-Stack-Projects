@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Accounts | RoyalTrust Bank</title>
+  <style>
+    :root {
+      --primary: #0b3d91;
+      --primary-dark: #072c66;
+      --accent: #ffd700;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --text-dark: #1c1c1c;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", "Segoe UI", Tahoma, sans-serif;
+      color: var(--text-dark);
+      background: url("https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?auto=format&fit=crop&w=1920&q=80") no-repeat center center fixed;
+      background-size: cover;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Add dark overlay for contrast */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: -1;
+    }
+
+    header {
+      background: rgba(11, 61, 145, 0.95);
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 60px auto;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .container h2 {
+      color: var(--primary-dark);
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .divider {
+      width: 80px;
+      height: 4px;
+      background: var(--accent);
+      margin: 10px auto 30px auto;
+      border-radius: 2px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    thead {
+      background: var(--primary);
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    th, td {
+      padding: 14px 20px;
+      text-align: left;
+    }
+
+    tbody tr {
+      background: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
+
+    tbody tr:nth-child(even) {
+      background: rgba(245, 247, 250, 0.8);
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 215, 0, 0.15);
+      transform: scale(1.005);
+    }
+
+    td {
+      border-bottom: 1px solid #ddd;
+    }
+
+    footer {
+      background: rgba(11, 61, 145, 0.95);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: auto;
+      letter-spacing: 0.3px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        margin: 30px 15px;
+      }
+      th, td {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+      }
+      header h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>RoyalTrust Bank</h1>
+  </header>
+
+  <div class="container">
+    <h2>All Customer Accounts</h2>
+    <div class="divider"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Account No.</th>
+          <th>Name</th>
+          <th>Account Type</th>
+          <th>Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr>
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[6] }}</td>
+          <td>₹{{ row[7] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    © 2025 RoyalTrust Bank. All Rights Reserved.
+  </footer>
+
+</body>
+</html>
