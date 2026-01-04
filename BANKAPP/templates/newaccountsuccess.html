@@ -1,110 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Account Created</title>
+<meta charset="UTF-8">
+<title>NISHANT Pvt Bank | Account Created</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- SAME FONT AS OTHER BANK PAGES -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <style>
-        /* ---------- Global Reset ---------- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
 
-        /* ---------- Page Background (BANK THEME) ---------- */
-        body {
-            background: #f5f7fb;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #334155;
-        }
+/* ================= PAGE ================= */
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#dbeafe,#bfdbfe,#e0f2fe);
+}
 
-        /* ---------- Container Box ---------- */
-        .container {
-            background: #ffffff;
-            padding: 50px 60px;
-            border-radius: 14px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-            width: 100%;
-            max-width: 480px;
-        }
+/* ================= CARD ================= */
+.success-card{
+    background:rgba(255,255,255,0.97);
+    width:100%;
+    max-width:520px;
+    padding:42px 44px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 22px 45px rgba(0,0,0,0.14);
+}
 
-        /* ---------- Heading ---------- */
-        .container h1 {
-            color: #0a3d62;
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
+/* ================= ICON ================= */
+.icon{
+    width:72px;
+    height:72px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#ffffff;
+    font-size:34px;
+}
 
-        /* ---------- Message Text ---------- */
-        .container p {
-            font-size: 0.95rem;
-            color: #475569;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
+/* ================= TEXT ================= */
+.success-card h1{
+    font-size:24px;
+    font-weight:600;
+    color:#0a3d62;
+    margin-bottom:10px;
+}
 
-        /* ---------- Button Styling (BANK STYLE) ---------- */
-        .btn {
-            display: inline-block;
-            background: #0a3d62;
-            color: #fff;
-            padding: 12px 34px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 14px;
-            transition: 0.2s ease;
-        }
+.success-card p{
+    font-size:14px;
+    color:#475569;
+    line-height:1.6;
+    margin-bottom:28px;
+}
 
-        .btn:hover {
-            opacity: 0.9;
-        }
+/* ================= BUTTON ================= */
+.btn-primary{
+    display:inline-block;
+    padding:13px 36px;
+    background:linear-gradient(135deg,#0a3d62,#1e6091);
+    color:#ffffff;
+    text-decoration:none;
+    border-radius:14px;
+    font-size:14px;
+    font-weight:500;
+    box-shadow:0 12px 30px rgba(10,61,98,.35);
+    transition:.25s;
+}
 
-        /* ---------- Success Icon ---------- */
-        .icon {
-            font-size: 2.8rem;
-            color: #16a34a;
-            margin-bottom: 15px;
-        }
+.btn-primary:hover{
+    transform:translateY(-2px);
+    opacity:.95;
+}
 
-        /* ---------- Responsive Design ---------- */
-        @media (max-width: 500px) {
-            .container {
-                padding: 40px 25px;
-            }
-
-            .container h1 {
-                font-size: 1.4rem;
-            }
-
-            .btn {
-                padding: 10px 25px;
-                font-size: 13px;
-            }
-        }
-    </style>
+/* ================= MOBILE ================= */
+@media(max-width:520px){
+    .success-card{
+        padding:32px 26px;
+        margin:0 16px;
+    }
+    .success-card h1{
+        font-size:22px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <div class="container">
-        <div class="icon">✔</div>
-        <h1>Account Created Successfully!</h1>
-        <p>
-            Your account has been created and is now active.
-            You can now view or manage your account details.
-        </p>
-        <a href="{{url_for('allaccounts')}}" class="btn">View All Accounts</a>
-    </div>
+<div class="success-card">
+
+    <div class="icon">✓</div>
+
+    <h1>Account Created Successfully</h1>
+    <p>
+        The customer account has been created and activated.
+        You can now view or manage the account details.
+    </p>
+
+    <a href="{{ url_for('allaccounts') }}" class="btn-primary">
+        View All Accounts
+    </a>
+
+</div>
 
 </body>
 </html>
