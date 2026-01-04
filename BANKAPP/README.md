@@ -17,5 +17,3 @@ Username: bank_admin
 
 Password: 12345
 
-markdown
-Copy code
