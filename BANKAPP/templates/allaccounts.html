@@ -1,185 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>All Accounts | RoyalTrust Bank</title>
-  <style>
-    :root {
-      --primary: #0b3d91;
-      --primary-dark: #072c66;
-      --accent: #ffd700;
-      --card-bg: rgba(255, 255, 255, 0.9);
-      --text-dark: #1c1c1c;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    }
+    <meta charset="UTF-8">
+    <title>NISHANT Pvt Bank | All Accounts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    body {
-      font-family: "Poppins", "Segoe UI", Tahoma, sans-serif;
-      color: var(--text-dark);
-      background: url("https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?auto=format&fit=crop&w=1920&q=80") no-repeat center center fixed;
-      background-size: cover;
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe, #e0f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    /* Add dark overlay for contrast */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: -1;
-    }
+        /* ================= CONTAINER ================= */
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 22px;
+            padding: 40px;
+            box-shadow: 0 25px 55px rgba(0, 0, 0, 0.15);
+        }
 
-    header {
-      background: rgba(11, 61, 145, 0.95);
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-      box-shadow: var(--shadow);
-    }
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 600;
+            color: #0a3d62;
+            margin-bottom: 10px;
+        }
 
-    header h1 {
-      font-size: 2.2rem;
-      letter-spacing: 1px;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
 
-    .container {
-      max-width: 1100px;
-      margin: 60px auto;
-      background: var(--card-bg);
-      border-radius: 16px;
-      padding: 40px 30px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-      text-align: center;
-    }
+        /* ================= TABLE ================= */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
 
-    .container h2 {
-      color: var(--primary-dark);
-      font-size: 1.8rem;
-      margin-bottom: 10px;
-      letter-spacing: 0.5px;
-    }
+        th, td {
+            padding: 16px 20px;
+            text-align: left;
+        }
 
-    .divider {
-      width: 80px;
-      height: 4px;
-      background: var(--accent);
-      margin: 10px auto 30px auto;
-      border-radius: 2px;
-    }
+        th {
+            background: linear-gradient(135deg, #0a3d62, #1e6091);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      overflow: hidden;
-      border-radius: 10px;
-    }
+        td {
+            font-size: 15px;
+            color: #334155;
+        }
 
-    thead {
-      background: var(--primary);
-      color: white;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+        tr:nth-child(even) {
+            background-color: #f8fbff;
+        }
 
-    th, td {
-      padding: 14px 20px;
-      text-align: left;
-    }
+        tr:hover {
+            background-color: #e0f2fe;
+            transition: background 0.25s ease;
+        }
 
-    tbody tr {
-      background: rgba(255, 255, 255, 0.8);
-      transition: all 0.3s ease;
-    }
+        /* ================= FOOTER BUTTON ================= */
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
 
-    tbody tr:nth-child(even) {
-      background: rgba(245, 247, 250, 0.8);
-    }
+        .back-btn {
+            padding: 12px 26px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #ffffff;
+            background: linear-gradient(135deg, #0a3d62, #1e6091);
+            border: none;
+            border-radius: 14px;
+            text-decoration: none;
+            box-shadow: 0 12px 30px rgba(10, 61, 98, 0.35);
+            transition: all 0.25s ease;
+        }
 
-    tbody tr:hover {
-      background: rgba(255, 215, 0, 0.15);
-      transform: scale(1.005);
-    }
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 40px rgba(10, 61, 98, 0.45);
+        }
 
-    td {
-      border-bottom: 1px solid #ddd;
-    }
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
 
-    footer {
-      background: rgba(11, 61, 145, 0.95);
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9rem;
-      margin-top: auto;
-      letter-spacing: 0.3px;
-    }
+            th, td {
+                padding: 12px;
+                font-size: 14px;
+            }
 
-    @media (max-width: 768px) {
-      .container {
-        padding: 20px;
-        margin: 30px 15px;
-      }
-      th, td {
-        padding: 10px 12px;
-        font-size: 0.9rem;
-      }
-      header h1 {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>RoyalTrust Bank</h1>
-  </header>
+<div class="container">
 
-  <div class="container">
-    <h2>All Customer Accounts</h2>
-    <div class="divider"></div>
+    <h1>All Accounts</h1>
+    <p class="subtitle">Complete list of customer bank accounts</p>
 
     <table>
-      <thead>
         <tr>
-          <th>Account No.</th>
-          <th>Name</th>
-          <th>Account Type</th>
-          <th>Balance</th>
+            <th>Account No</th>
+            <th>Name</th>
+            <th>Account Type</th>
+            <th>Balance</th>
         </tr>
-      </thead>
-      <tbody>
+
         {% for row in rows %}
         <tr>
-          <td>{{ row[0] }}</td>
-          <td>{{ row[1] }}</td>
-          <td>{{ row[6] }}</td>
-          <td>₹{{ row[7] }}</td>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[6] }}</td>
+            <td>₹ {{ row[7] }}</td>
         </tr>
         {% endfor %}
-      </tbody>
     </table>
-  </div>
 
-  <footer>
-    © 2025 RoyalTrust Bank. All Rights Reserved.
-  </footer>
+    <!-- Back Button -->
+    <div class="actions">
+        <a href="{{ url_for('home') }}" class="back-btn">
+            ⬅ Back to Dashboard
+        </a>
+    </div>
+
+</div>
 
 </body>
 </html>

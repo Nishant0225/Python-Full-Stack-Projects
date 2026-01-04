@@ -14,20 +14,14 @@ def index():
 def checklogin():
     userid=request.form['userid']
     password=request.form['password']
-    if userid=='Nishant' and password=='1234':
+    if userid=='Tanvi' and password=='1234':
         return redirect("home")
     else:
         return "login Failed"
     
 @app.route("/home")
 def home():
-    conn=sqlite3.connect("bank.db")
-    cur=conn.cursor()
-    TotalAccounts=cur.execute("select count(*) from accmaster").fetchone()[0]
-    Totaltransactions=cur.execute("select count(*) from transactions").fetchone()[0]
-    TotalDeposits=cur.execute("select sum(amount) from transactions where trans='deposit'").fetchone()[0]
-    TotalWithdrawals=cur.execute("select sum(amount) from transactions where trans='withdraw'").fetchone()[0]
-    return render_template("home.html",TotalAccounts=TotalAccounts,Totaltransactions=Totaltransactions,TotalDeposits=TotalDeposits,TotalWithdrawals=TotalWithdrawals)
+    return render_template("home.html")
 
 @app.route("/openaccount")
 def openaccount():
