@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Created</title>
+
+    <!-- SAME FONT AS OTHER BANK PAGES -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ---------- Global Reset ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ---------- Page Background (BANK THEME) ---------- */
+        body {
+            background: #f5f7fb;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #334155;
+        }
+
+        /* ---------- Container Box ---------- */
+        .container {
+            background: #ffffff;
+            padding: 50px 60px;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 480px;
+        }
+
+        /* ---------- Heading ---------- */
+        .container h1 {
+            color: #0a3d62;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* ---------- Message Text ---------- */
+        .container p {
+            font-size: 0.95rem;
+            color: #475569;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* ---------- Button Styling (BANK STYLE) ---------- */
+        .btn {
+            display: inline-block;
+            background: #0a3d62;
+            color: #fff;
+            padding: 12px 34px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* ---------- Success Icon ---------- */
+        .icon {
+            font-size: 2.8rem;
+            color: #16a34a;
+            margin-bottom: 15px;
+        }
+
+        /* ---------- Responsive Design ---------- */
+        @media (max-width: 500px) {
+            .container {
+                padding: 40px 25px;
+            }
+
+            .container h1 {
+                font-size: 1.4rem;
+            }
+
+            .btn {
+                padding: 10px 25px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="icon">✔</div>
+        <h1>Account Created Successfully!</h1>
+        <p>
+            Your account has been created and is now active.
+            You can now view or manage your account details.
+        </p>
+        <a href="{{url_for('allaccounts')}}" class="btn">View All Accounts</a>
+    </div>
+
+</body>
+</html>
