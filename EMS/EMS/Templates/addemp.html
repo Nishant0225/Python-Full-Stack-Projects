@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employees</title>
+
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(120deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 420px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            margin-bottom: 20px;
+        }
+
+        /* Messages */
+        .message {
+            background: #e6fffa;
+            color: #065f46;
+            padding: 10px;
+            border-left: 4px solid #10b981;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            animation: slideDown 0.5s ease;
+        }
+
+        /* Form styling */
+        form p {
+            margin-bottom: 15px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            transition: all 0.3s ease;
+        }
+
+        form input:focus,
+        form select:focus,
+        form textarea:focus {
+            border-color: #74ebd5;
+            box-shadow: 0 0 0 3px rgba(116, 235, 213, 0.3);
+            outline: none;
+        }
+
+        /* Submit button */
+        input[type="submit"] {
+            width: 100%;
+            background: linear-gradient(120deg, #74ebd5, #acb6e5);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="submit"]:active {
+            transform: scale(0.98);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Add Employees</h1>
+        <hr>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save">
+        </form>
+    </div>
+</body>
+</html>
+
+<!-- code  Of class
+<html> 
+    <body> 
+    <h1>Add Employees</h1>
+     <hr>
+      {% if messages %} 
+     {% for message in messages %} 
+     <div> {{message}} 
+
+     </div> 
+     {% endfor %} {% endif %} 
+     <form action="" method="post"> 
+        {% csrf_token %} 
+        {{form.as_p}}
+     <input type="submit" value="Save"> 
+    </form> 
+    </body> 
+    </html>
+
+-->
