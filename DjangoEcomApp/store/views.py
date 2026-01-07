@@ -38,7 +38,7 @@ def storeLoginView(request):
       request.session['user_id']=user.id
       return redirect("storeIndex")
     else:
-      info(request,"Invalid Login Credentials")
+      info(request,"Invalid Login Credentials ❌")
   return render(request,"storelogin.html")
 
 def storeLogoutView(request):
@@ -183,3 +183,4 @@ def OrderProductView(request,productid):
     models.OrderModelClass.objects.create(product=products[0],user=user,finalprice=finalprice,paymentmethod=paymethod,address=address,orderstatus='order placed') 
 
     return render(request,"ordersuccess.html")
+
