@@ -50,7 +50,7 @@ def storeCreateAccountView(request):
     form=forms.UserModelForm(request.POST)
     if form.is_valid():
       form.save()
-      info(request,"Account Created Successfully")
+      info(request,"Account Created Successfully ✅")
       return redirect("storelogin")
     else:
       error(request,"Error in Creating Account")
@@ -181,4 +181,5 @@ def OrderProductView(request,productid):
     products=models.ProductModelClass.objects.filter(id=productid)
     finalprice=products[0].price+(products[0].price*0.12)+50
     models.OrderModelClass.objects.create(product=products[0],user=user,finalprice=finalprice,paymentmethod=paymethod,address=address,orderstatus='order placed') 
+
     return render(request,"ordersuccess.html")
