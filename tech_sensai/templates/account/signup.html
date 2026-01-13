@@ -1,0 +1,187 @@
+{% load i18n socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up · SENS AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body{
+      margin:0;
+      min-height:100vh;
+      background:#000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+      color:#fff;
+    }
+
+    .auth-card{
+      width:100%;
+      max-width:420px;
+      padding:2.8rem 2.6rem 3rem;
+      background:#000;
+      border-radius:1.2rem;
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:
+        0 40px 90px rgba(0,0,0,.9),
+        inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+
+    .logo{
+      text-align:center;
+      font-size:2.2rem;
+      font-weight:900;
+      letter-spacing:.12em;
+      margin-bottom:2.4rem;
+    }
+
+    .logo span:first-child{
+      color:#fff;
+    }
+
+    .logo span:last-child{
+      background:linear-gradient(135deg,#38bdf8,#2563eb);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    h2{
+      text-align:center;
+      font-size:1.5rem;
+      margin-bottom:1.8rem;
+    }
+
+    form input{
+      width:100%;
+      padding:.9rem 1rem;
+      margin-bottom:1rem;
+      border-radius:.55rem;
+      border:1px solid rgba(255,255,255,.2);
+      background:#000;
+      color:#fff;
+      font-size:.95rem;
+    }
+
+    form input:focus{
+      outline:none;
+      border-color:#38bdf8;
+      box-shadow:0 0 0 2px rgba(56,189,248,.2);
+    }
+
+    button{
+      width:100%;
+      padding:.95rem;
+      border:none;
+      border-radius:.6rem;
+      background:#fff;
+      color:#000;
+      font-weight:600;
+      font-size:1rem;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+
+    button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 18px 40px rgba(255,255,255,.25);
+    }
+
+    .or{
+      text-align:center;
+      margin:1.8rem 0 1.2rem;
+      color:#9ca3af;
+      font-size:.9rem;
+    }
+
+    /* Google button */
+    .google-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:.6rem;
+      padding:.9rem;
+      border-radius:.6rem;
+      border:1px solid rgba(255,255,255,.25);
+      text-decoration:none;
+      color:#fff;
+      font-weight:500;
+      transition:.25s ease;
+    }
+
+    .google-btn:hover{
+      background:#fff;
+      color:#000;
+    }
+
+    .google-icon{
+      display:flex;
+      align-items:center;
+    }
+
+    .footer{
+      margin-top:2rem;
+      text-align:center;
+      font-size:.85rem;
+      color:#9ca3af;
+    }
+
+    .footer a{
+      color:#38bdf8;
+      text-decoration:none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="auth-card">
+
+    <div class="logo">
+      <span>SENS</span><span>AI</span>
+    </div>
+
+    <h2>Create your account</h2>
+    {% if form.errors %}
+  <div style="color:#f87171; margin-bottom:1rem; font-size:.9rem;">
+    {{ form.errors }}
+  </div>
+{% endif %}
+
+
+    <form method="POST" action="{% url 'account_signup' %}">
+      {% csrf_token %}
+      {{ form.email }}
+      {{ form.password1 }}
+      {{ form.password2 }}
+
+      <button type="submit">Create Account</button>
+    </form>
+
+    {% if socialaccount_providers %}
+      <div class="or">OR</div>
+
+      <a class="google-btn" href="{% provider_login_url 'google' %}">
+        <span class="google-icon">
+          <svg width="18" height="18" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.2 2.6 29.4 0 24 0 14.6 0 6.5 5.4 2.7 13.3l7 5.4C11.6 13.4 17.3 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-2.8-.4-4H24v7.6h12.6c-.3 2-1.7 5-4.8 7l7.4 5.7c4.3-4 6.9-9.8 6.9-16.3z"/>
+            <path fill="#FBBC05" d="M9.7 28.7c-.5-1.4-.8-2.9-.8-4.7s.3-3.3.8-4.7l-7-5.4C.9 16.8 0 20.3 0 24s.9 7.2 2.7 10.1l7-5.4z"/>
+            <path fill="#34A853" d="M24 48c6.5 0 12-2.1 16-5.7l-7.4-5.7c-2 1.4-4.6 2.4-8.6 2.4-6.7 0-12.4-3.9-14.3-9.3l-7 5.4C6.5 42.6 14.6 48 24 48z"/>
+          </svg>
+        </span>
+        Continue with Google
+      </a>
+    {% endif %}
+
+    <div class="footer">
+      Already have an account?
+      <a href="{% url 'account_login' %}">Sign in</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
