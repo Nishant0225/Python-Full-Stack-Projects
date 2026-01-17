@@ -16,6 +16,7 @@
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
             background: linear-gradient(135deg, #dbeafe, #bfdbfe, #e0f2fe);
+            overflow-x: hidden;
         }
 
         /* ================= SIDEBAR ================= */
@@ -137,6 +138,87 @@
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
         }
+
+        /* ================= RESPONSIVE ================= */
+
+        /* Tablet */
+        @media (max-width: 992px){
+            .sidebar{
+                width:220px;
+            }
+            .main-content{
+                padding:30px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px){
+
+            .d-flex{
+                flex-direction:column;
+                min-height:100vh;
+            }
+
+            /* Sidebar becomes top bar */
+            .sidebar{
+                width:100%;
+                min-height:auto;
+                display:flex;
+                flex-wrap:wrap;
+                justify-content:center;
+                padding-bottom:10px;
+            }
+
+            .sidebar h4{
+                width:100%;
+                padding:18px 10px;
+                font-size:18px;
+            }
+
+            .sidebar a{
+                padding:10px 14px;
+                font-size:13px;
+            }
+
+            .sidebar a:hover{
+                padding-left:14px;
+            }
+
+            .sidebar .logout{
+                margin:10px;
+                width:90%;
+            }
+
+            .main-content{
+                padding:20px;
+            }
+
+            .page-title{
+                font-size:20px;
+            }
+
+            .welcome-box{
+                flex-direction:column;
+                text-align:center;
+            }
+
+            .welcome-box img{
+                width:120px;
+            }
+        }
+
+        /* Small Mobile */
+        @media (max-width: 480px){
+
+            .sidebar a{
+                font-size:12px;
+                padding:8px 10px;
+            }
+
+            .page-title{
+                font-size:18px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -214,8 +296,3 @@
 
 </body>
 </html>
-
-
-
-
-
