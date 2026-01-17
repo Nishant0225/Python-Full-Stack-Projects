@@ -16,6 +16,7 @@ body{
     font-family:'Inter',sans-serif;
     min-height:100vh;
     background:linear-gradient(135deg,#dbeafe,#bfdbfe,#e0f2fe);
+    overflow-x:hidden;
 }
 
 /* ================= SIDEBAR ================= */
@@ -163,8 +164,86 @@ tr:nth-child(even){
 }
 
 /* ================= RESPONSIVE ================= */
-@media(max-width:768px){
-    .card-box{padding:24px}
+
+/* Tablet */
+@media (max-width: 992px){
+    .sidebar{
+        width:220px;
+    }
+    .main{
+        padding:30px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px){
+
+    .d-flex{
+        flex-direction:column;
+        min-height:100vh;
+    }
+
+    /* Sidebar becomes top bar */
+    .sidebar{
+        width:100%;
+        min-height:auto;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        padding-bottom:10px;
+    }
+
+    .sidebar h4{
+        width:100%;
+        padding:18px 10px;
+        font-size:18px;
+    }
+
+    .sidebar a{
+        padding:10px 14px;
+        font-size:13px;
+    }
+
+    .sidebar a:hover{
+        padding-left:14px;
+    }
+
+    .main{
+        padding:20px;
+    }
+
+    .page-title{
+        font-size:20px;
+    }
+
+    .card-box{
+        padding:20px;
+        border-radius:16px;
+        overflow-x:auto;
+    }
+
+    table{
+        min-width:600px;
+    }
+
+    th, td{
+        font-size:12px;
+        padding:10px 12px;
+        white-space:nowrap;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px){
+
+    .sidebar a{
+        font-size:12px;
+        padding:8px 10px;
+    }
+
+    .page-title{
+        font-size:18px;
+    }
 }
 </style>
 </head>
@@ -240,7 +319,3 @@ tr:nth-child(even){
 
 </body>
 </html>
-
-
-
-
