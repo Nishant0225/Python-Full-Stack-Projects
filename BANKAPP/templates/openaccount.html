@@ -16,6 +16,7 @@ body{
     font-family:'Inter',sans-serif;
     min-height:100vh;
     background:linear-gradient(135deg,#dbeafe,#bfdbfe,#e0f2fe);
+    overflow-x:hidden;
 }
 
 /* ================= SIDEBAR ================= */
@@ -134,10 +135,103 @@ input:focus,select:focus{
 
 .submit-btn:hover{opacity:.9}
 
-@media(max-width:768px){
-    .form-grid{grid-template-columns:1fr}
-    .full{grid-column:span 1}
-    .action-bar{flex-direction:column;gap:14px}
+/* ================= RESPONSIVE ================= */
+
+/* Tablet */
+@media (max-width: 992px){
+    .sidebar{
+        width:220px;
+    }
+    .main{
+        padding:30px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px){
+
+    .d-flex{
+        flex-direction:column;
+        min-height:100vh;
+    }
+
+    /* Sidebar becomes top bar */
+    .sidebar{
+        width:100%;
+        min-height:auto;
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        padding-bottom:10px;
+    }
+
+    .sidebar h4{
+        width:100%;
+        padding:18px 10px;
+        font-size:18px;
+    }
+
+    .sidebar a{
+        padding:10px 14px;
+        font-size:13px;
+    }
+
+    .sidebar a:hover{
+        padding-left:14px;
+    }
+
+    .main{
+        padding:20px;
+    }
+
+    .page-title{
+        font-size:20px;
+    }
+
+    .form-card{
+        padding:20px;
+        border-radius:16px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:span 1;
+    }
+
+    .gender{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .action-bar{
+        flex-direction:column;
+        gap:14px;
+    }
+
+    .submit-btn{
+        width:100%;
+        text-align:center;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px){
+
+    .sidebar a{
+        font-size:12px;
+        padding:8px 10px;
+    }
+
+    .page-title{
+        font-size:18px;
+    }
+
+    input, select{
+        font-size:13px;
+    }
 }
 </style>
 </head>
@@ -167,7 +261,6 @@ input:focus,select:focus{
         <div class="form-card">
             <form action="{{ url_for('openaccountsubmit') }}" method="post">
 
-                <!-- PERSONAL -->
                 <div class="section-title">Personal Details</div>
 
                 <div class="form-grid">
@@ -200,7 +293,6 @@ input:focus,select:focus{
                     </div>
                 </div>
 
-                <!-- ACCOUNT -->
                 <div class="section-title mt-4">Account Details</div>
 
                 <div class="form-grid">
@@ -222,7 +314,6 @@ input:focus,select:focus{
                     </div>
                 </div>
 
-                <!-- ACTIONS -->
                 <div class="action-bar">
                     <a href="{{ url_for('home') }}" class="submit-btn" style="text-decoration:none">⬅ Back</a>
                     <button type="submit" class="submit-btn">Create Account</button>
@@ -236,6 +327,3 @@ input:focus,select:focus{
 
 </body>
 </html>
-
-
-
