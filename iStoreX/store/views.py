@@ -13,4 +13,4 @@ def storeProductView(request,category):
     categories=CategoryModelClass.objects.all()
     category_obj=CategoryModelClass.objects.get(name=category)
     products=ProductModelCLass.objects.filter(category=category_obj.id)
-    return render(request,"products.html",{'products':products,'categories':categories})
+    return render(request,"products.html",{'products':products,'categories':categories,'category_name':category_obj.name})
