@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from . import models
 from .models import *
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
@@ -16,4 +17,18 @@ def storeProductView(request,category):
     return render(request,"products.html",{'products':products,'categories':categories,'category_name':category_obj.name})
 
 def login_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect("storeIndex")
+        else:
+            return render(request, "login.html", {
+                "error": "Invalid username or password"
+            })
+
     return render(request, "login.html")
