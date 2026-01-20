@@ -12,30 +12,47 @@
 *{font-family:Poppins,sans-serif}
 
 body{
-  background:#050507;
+  background:#000;
   color:white;
   overflow-x:hidden;
 }
-
-/* NAVBAR — EXACT CLONE */
-.navbar{
-  backdrop-filter: blur(20px);
-  background: rgba(255,255,255,0.06)!important;
-  border-bottom:1px solid rgba(255,255,255,0.12);
-}
-.nav-link{color:white!important}
-.nav-link:hover{color:#0d6efd!important}
 
 /* BACKGROUND GLOW — SAME AS INDEX */
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:radial-gradient(circle at top,#1b1b2f,#050507);
+  background:radial-gradient(circle at top,#0a0a0a,#000);
   z-index:-2;
 }
 
-/* HERO STYLE HEADER */
+/* NAVBAR — SAME AS INDEX */
+.navbar{
+  backdrop-filter: blur(20px);
+  background: rgba(0,0,0,0.75)!important;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.nav-link{
+  color:white!important;
+  position:relative;
+  padding-bottom:6px;
+}
+
+/* UNDERLINE */
+.nav-link::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#fff,#aaa);
+  transform:translateX(-50%);
+  transition:.35s;
+}
+.nav-link:hover::after{width:100%}
+
+/* PAGE HERO */
 .page-hero{
   min-height:60vh;
   display:flex;
@@ -44,30 +61,11 @@ body::before{
   overflow:hidden;
 }
 
-.page-hero::before,
-.page-hero::after{
-  content:"";
-  position:absolute;
-  width:500px;height:500px;
-  border-radius:50%;
-  filter:blur(140px);
-  opacity:.5;
-  animation:pulse 8s infinite alternate;
-}
-
-.page-hero::before{background:#0d6efd;top:-200px;right:-200px;}
-.page-hero::after{background:#ff2d55;bottom:-200px;left:-200px;}
-
-@keyframes pulse{
-  from{transform:scale(1)}
-  to{transform:scale(1.2)}
-}
-
-/* GLASS PANEL — SAME AS INDEX */
+/* GLASS PANEL */
 .glass{
-  background:rgba(255,255,255,0.08);
+  background:rgba(0,0,0,0.65);
   backdrop-filter:blur(30px);
-  border:1px solid rgba(255,255,255,0.18);
+  border:1px solid rgba(255,255,255,0.12);
   border-radius:26px;
   padding:55px;
   animation:fadeUp 1.2s ease;
@@ -80,49 +78,70 @@ body::before{
 
 /* PRODUCT CARD — SAME AS INDEX */
 .product{
-  background:rgba(255,255,255,0.06);
+  position:relative;
+  background:rgba(0,0,0,0.6);
   backdrop-filter:blur(20px);
   border:1px solid rgba(255,255,255,0.12);
   border-radius:22px;
   padding:25px;
   transition:.5s;
   height:100%;
+  overflow:hidden;
 }
+
+.product::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent 45%,
+    rgba(255,255,255,0.08) 50%,
+    transparent 55%
+  );
+  opacity:0;
+  transition:.5s;
+}
+
+.product:hover::after{opacity:1}
 
 .product:hover{
   transform:translateY(-14px) scale(1.04);
-  box-shadow:0 30px 70px rgba(0,0,0,.6);
+  box-shadow:0 30px 70px rgba(0,0,0,.9);
 }
 
 .product img{
   width:100%;
-  height:220px;
+  height:240px;
   object-fit:contain;
-  margin-bottom:18px;
-  filter: drop-shadow(0 30px 50px rgba(0,0,0,.8));
+  margin-bottom:15px;
+  filter:drop-shadow(0 40px 80px rgba(0,0,0,.9));
+  transition:.6s;
 }
 
+.product:hover img{transform:scale(1.08)}
+
 .price{
-  color:#0d6efd;
+  color:#fff;
   font-weight:700;
   margin-bottom:18px;
 }
 
 /* BUTTON — SAME AS INDEX */
 .btn-glow{
-  background:linear-gradient(135deg,#0d6efd,#6610f2);
+  background:linear-gradient(135deg,#111,#000);
   border:none;
   color:white;
   padding:12px 28px;
   border-radius:40px;
-  box-shadow:0 0 25px rgba(13,110,253,.6);
+  box-shadow:0 0 25px rgba(255,255,255,.15);
   transition:.4s;
   width:100%;
 }
 
 .btn-glow:hover{
   transform:scale(1.08);
-  box-shadow:0 0 50px rgba(102,16,242,1);
+  box-shadow:0 0 45px rgba(255,255,255,.3);
 }
 
 .btn-outline{
@@ -149,79 +168,16 @@ body::before{
   opacity:1;
   transform:translateY(0);
 }
-/* FEATURED SECTION WRAPPER */
-.featured-section{
-  position:relative;
-  margin-top:120px;
-  margin-bottom:120px;
-}
-
-/* BACKGROUND GLOWS */
-.featured-section::before,
-.featured-section::after{
-  content:"";
-  position:absolute;
-  width:420px;
-  height:420px;
-  border-radius:50%;
-  filter:blur(140px);
-  opacity:.4;
-  z-index:-1;
-}
-
-.featured-section::before{
-  background:#0d6efd;
-  top:-120px;
-  right:-120px;
-}
-
-.featured-section::after{
-  background:#6610f2;
-  bottom:-120px;
-  left:-120px;
-}
-
-/* FEATURED GLASS PANEL */
-.featured-glass{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(35px);
-  border:1px solid rgba(255,255,255,0.12);
-  border-radius:40px;
-  padding:70px 50px;
-  box-shadow:0 40px 120px rgba(0,0,0,.6);
-}
-
-/* FEATURED TITLE */
-.featured-title{
-  font-size:2.4rem;
-  font-weight:700;
-  letter-spacing:.5px;
-}
-
-.featured-title span{
-  background:linear-gradient(135deg,#0d6efd,#6610f2);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-/* FEATURED PRODUCT CARD UPGRADE */
-.featured-glass .product{
-  background:rgba(255,255,255,0.08);
-  border-radius:26px;
-}
-
-.featured-glass .product img{
-  height:240px;
-}
-
 </style>
 </head>
+
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top">
 <div class="container">
 <a class="navbar-brand fw-bold text-white">iStoreX</a>
+
 <div class="collapse navbar-collapse show">
 <ul class="navbar-nav mx-auto">
 <li class="nav-item"><a class="nav-link" href="{% url 'storeIndex' %}">Home</a></li>
@@ -231,12 +187,13 @@ body::before{
 </li>
 {% endfor %}
 </ul>
+
 <button class="btn btn-outline-light">Cart</button>
 </div>
 </div>
 </nav>
 
-<!-- HERO HEADER -->
+<!-- HERO -->
 <section class="page-hero">
 <div class="container">
 <div class="row justify-content-center">
@@ -263,7 +220,6 @@ body::before{
     <img src="{{ product.image.url }}" alt="{{ product.name }}">
 
     <h6 class="fw-semibold">{{ product.name }}</h6>
-
     <p class="price">₹ {{ product.price }}</p>
 
     <div class="d-grid gap-3">
