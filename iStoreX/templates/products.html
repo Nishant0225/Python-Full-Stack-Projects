@@ -17,7 +17,7 @@ body{
   overflow-x:hidden;
 }
 
-/* BACKGROUND GLOW — SAME AS INDEX */
+/* BACKGROUND */
 body::before{
   content:"";
   position:fixed;
@@ -26,19 +26,19 @@ body::before{
   z-index:-2;
 }
 
-/* NAVBAR — SAME AS INDEX */
+/* NAVBAR */
 .navbar{
-  backdrop-filter: blur(20px);
-  background: rgba(0,0,0,0.75)!important;
+  backdrop-filter:blur(20px);
+  background:rgba(0,0,0,0.75)!important;
   border-bottom:1px solid rgba(255,255,255,0.08);
 }
+
 .nav-link{
   color:white!important;
   position:relative;
   padding-bottom:6px;
 }
 
-/* UNDERLINE */
 .nav-link::after{
   content:"";
   position:absolute;
@@ -52,16 +52,14 @@ body::before{
 }
 .nav-link:hover::after{width:100%}
 
-/* PAGE HERO */
+/* HERO */
 .page-hero{
   min-height:60vh;
   display:flex;
   align-items:center;
-  position:relative;
-  overflow:hidden;
 }
 
-/* GLASS PANEL */
+/* GLASS */
 .glass{
   background:rgba(0,0,0,0.65);
   backdrop-filter:blur(30px);
@@ -76,7 +74,7 @@ body::before{
   to{opacity:1;transform:translateY(0)}
 }
 
-/* PRODUCT CARD — SAME AS INDEX */
+/* PRODUCT CARD */
 .product{
   position:relative;
   background:rgba(0,0,0,0.6);
@@ -116,7 +114,7 @@ body::before{
   object-fit:contain;
   margin-bottom:15px;
   filter:drop-shadow(0 40px 80px rgba(0,0,0,.9));
-  transition:.6s;
+  transition:.6s ease;
 }
 
 .product:hover img{transform:scale(1.08)}
@@ -127,7 +125,7 @@ body::before{
   margin-bottom:18px;
 }
 
-/* BUTTON — SAME AS INDEX */
+/* BUTTONS */
 .btn-glow{
   background:linear-gradient(135deg,#111,#000);
   border:none;
@@ -158,11 +156,11 @@ body::before{
   background:rgba(255,255,255,0.15);
 }
 
-/* SCROLL REVEAL */
+/* REVEAL */
 .reveal{
   opacity:0;
-  transform:translateY(50px);
-  transition:1s;
+  transform:translateY(40px);
+  transition:1s ease;
 }
 .reveal.active{
   opacity:1;
@@ -198,26 +196,29 @@ body::before{
 <div class="container">
 <div class="row justify-content-center">
 <div class="col-lg-8 text-center">
-
-<div class="glass">
-  <h1 class="display-6 fw-bold">Our Premium Collection</h1>
-  <p class="lead mt-3">Same luxury. Same future. All Apple.</p>
-</div>
-
+  <div class="glass">
+    <h1 class="display-6 fw-bold">Our Premium Collection</h1>
+    <p class="lead mt-3">Same luxury. Same future. All Apple.</p>
+  </div>
 </div>
 </div>
 </div>
 </section>
 
-<!-- PRODUCT GRID -->
-<section class="container my-5 reveal">
+<!-- PRODUCTS (VISIBLE IMMEDIATELY) -->
+<section class="container my-5">
 <div class="row g-4">
 
 {% for product in products %}
-<div class="col-lg-3 col-md-4 col-sm-6">
+<div class="col-lg-3 col-md-4 col-sm-6 reveal">
   <div class="product text-center">
 
-    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    <img 
+      src="{{ product.image.url }}"
+      loading="lazy"
+      decoding="async"
+      alt="{{ product.name }}"
+    >
 
     <h6 class="fw-semibold">{{ product.name }}</h6>
     <p class="price">₹ {{ product.price }}</p>
@@ -235,14 +236,21 @@ body::before{
 </section>
 
 <script>
-window.addEventListener("scroll",()=>{
-  document.querySelectorAll(".reveal").forEach(el=>{
-    if(el.getBoundingClientRect().top < window.innerHeight-100){
+const revealElements = document.querySelectorAll(".reveal");
+
+function revealOnScroll(){
+  revealElements.forEach(el=>{
+    const rect = el.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 60){
       el.classList.add("active");
     }
   });
-});
+}
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
