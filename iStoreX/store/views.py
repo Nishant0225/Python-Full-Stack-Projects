@@ -1,0 +1,16 @@
+from django.shortcuts import render
+from . import models
+from .models import *
+
+# Create your views here.
+
+def storeIndexView(request):
+    categories=CategoryModelClass.objects.all()
+    products=ProductModelCLass.objects.all()
+    return render(request,"index.html",{'categories':categories,'products':products})
+
+def storeProductView(request,category):
+    categories=CategoryModelClass.objects.all()
+    category_obj=CategoryModelClass.objects.get(name=category)
+    products=ProductModelCLass.objects.filter(category=category_obj.id)
+    return render(request,"products.html",{'products':products,'categories':categories})
