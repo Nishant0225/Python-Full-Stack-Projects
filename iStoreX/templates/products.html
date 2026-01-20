@@ -52,26 +52,42 @@ body::before{
 }
 .nav-link:hover::after{width:100%}
 
-/* HERO */
-.page-hero{
-  min-height:60vh;
-  display:flex;
-  align-items:center;
+/* EXPERIENCE SECTION */
+.experience{
+  margin-top:120px;
+  margin-bottom:80px;
 }
 
-/* GLASS */
-.glass{
+.experience-card{
   background:rgba(0,0,0,0.65);
-  backdrop-filter:blur(30px);
+  backdrop-filter:blur(28px);
   border:1px solid rgba(255,255,255,0.12);
-  border-radius:26px;
-  padding:55px;
-  animation:fadeUp 1.2s ease;
+  border-radius:28px;
+  padding:45px 30px;
+  text-align:center;
+  transition:.5s;
+  height:100%;
 }
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1;transform:translateY(0)}
+.experience-card:hover{
+  transform:translateY(-12px) scale(1.04);
+  box-shadow:0 30px 80px rgba(0,0,0,.9);
+}
+
+.experience-icon{
+  font-size:36px;
+  margin-bottom:18px;
+  opacity:.9;
+}
+
+.experience-card h5{
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.experience-card p{
+  font-size:15px;
+  color:rgba(255,255,255,.7);
 }
 
 /* PRODUCT CARD */
@@ -191,21 +207,38 @@ body::before{
 </div>
 </nav>
 
-<!-- HERO -->
-<section class="page-hero">
-<div class="container">
-<div class="row justify-content-center">
-<div class="col-lg-8 text-center">
-  <div class="glass">
-    <h1 class="display-6 fw-bold">Our Premium Collection</h1>
-    <p class="lead mt-3">Same luxury. Same future. All Apple.</p>
+<!-- EXPERIENCE SECTION -->
+<section class="experience container">
+  <div class="row g-4">
+
+    <div class="col-md-4 reveal">
+      <div class="experience-card">
+        <div class="experience-icon">⚡</div>
+        <h5>Instant Performance</h5>
+        <p>Optimized Apple devices with fast checkout and smooth browsing.</p>
+      </div>
+    </div>
+
+    <div class="col-md-4 reveal">
+      <div class="experience-card">
+        <div class="experience-icon">🛡️</div>
+        <h5>100% Authentic</h5>
+        <p>Genuine Apple products with official warranty and trusted sourcing.</p>
+      </div>
+    </div>
+
+    <div class="col-md-4 reveal">
+      <div class="experience-card">
+        <div class="experience-icon">✨</div>
+        <h5>Designed Like Apple</h5>
+        <p>Minimal, cinematic interface inspired by Apple’s design philosophy.</p>
+      </div>
+    </div>
+
   </div>
-</div>
-</div>
-</div>
 </section>
 
-<!-- PRODUCTS (VISIBLE IMMEDIATELY) -->
+<!-- PRODUCT GRID -->
 <section class="container my-5">
 <div class="row g-4">
 
