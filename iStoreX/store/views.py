@@ -14,7 +14,6 @@ def storeProductView(request,category):
     category_obj=CategoryModelClass.objects.get(name=category)
     products=ProductModelCLass.objects.filter(category=category_obj.id)
     return render(request,"products.html",{'products':products,'categories':categories,'category_name':category_obj.name})
-from django.shortcuts import render
 
 def login_view(request):
     return render(request, "login.html")
