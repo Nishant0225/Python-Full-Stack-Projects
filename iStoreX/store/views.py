@@ -67,3 +67,7 @@ def signup_view(request):
         return redirect("storeIndex")
 
     return render(request, "signup.html")
+
+@login_required
+def profile_view(request):
+    return render(request, "profile.html")
