@@ -13,7 +13,7 @@ def storeIndexView(request):
     products=ProductModelCLass.objects.all()
     return render(request,"index.html",{'categories':categories,'products':products})
 
-@Llogin_required
+@login_required
 def storeProductView(request,category):
     categories=CategoryModelClass.objects.all()
     category_obj=CategoryModelClass.objects.get(name=category)
@@ -29,13 +29,18 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect("storeIndex")
+
+            # ✅ redirect to next page if exists
+            next_url = request.GET.get("next")
+            return redirect(next_url or "storeIndex")
+
         else:
             return render(request, "login.html", {
                 "error": "Invalid username or password"
             })
 
     return render(request, "login.html")
+
 
 def signup_view(request):
     return render(request, "signup.html")
