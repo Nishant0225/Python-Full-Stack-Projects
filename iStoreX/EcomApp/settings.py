@@ -127,3 +127,4 @@ MEDIA_URL='uploads/'
 MEDIA_ROOT=BASE_DIR/'uploads/'
 LOGIN_REDIRECT_URL = "storeIndex"
 LOGOUT_REDIRECT_URL = "storeIndex"
+LOGIN_URL = "login"
