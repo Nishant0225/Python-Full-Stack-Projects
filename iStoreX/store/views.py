@@ -12,6 +12,7 @@ def storeIndexView(request):
     products=ProductModelCLass.objects.all()
     return render(request,"index.html",{'categories':categories,'products':products})
 
+@Llogin_required
 def storeProductView(request,category):
     categories=CategoryModelClass.objects.all()
     category_obj=CategoryModelClass.objects.get(name=category)
