@@ -146,8 +146,11 @@ body::before{
         <p>Quantity: {{ item.quantity }}</p>
         <div class="cart-price">₹ {{ item.product.price }}</div>
       </div>
-
+        <a href="{% url 'removefromcart' item.id %}" class="btn-glow">
+            Remove
+        </a>
     </div>
+
     {% endfor %}
 
     <div class="text-center mt-5">

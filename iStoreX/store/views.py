@@ -104,3 +104,12 @@ def cart_view(request):
     return render(request, "cart.html", {
         "cart_items": cart_items
     })
+    
+@login_required
+def removefromcart_view(request,cart_item_id):
+    if request.method == "POST":
+        product = ProductModelCLass.objects.get(id=cart_item_id)
+        user = request.user
+        itemdelete=CartModelClass.objects.get(user=user,product=product)
+        itemdelete.delete()
+    return redirect("cart")
