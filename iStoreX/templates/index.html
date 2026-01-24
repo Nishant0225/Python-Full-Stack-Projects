@@ -510,6 +510,12 @@ body{
   <a href="{% url 'profile' %}" class="text-white me-3">
     {{ user.username }}
   </a>
+  <form method="post" action="{% url 'cart' %}" class="d-inline">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-login">
+    Cart
+  </button>
+</form>
   <form method="post" action="{% url 'logout' %}" class="d-inline">
   {% csrf_token %}
   <button type="submit" class="btn btn-login">
@@ -517,15 +523,14 @@ body{
   </button>
 </form>
 
+
 {% else %}
   <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-login">
     Login
   </a>
-{% endif %}
-
-
+  {% endif %}
+  
 </div>
-
 </div>
 </div>
 </nav>
