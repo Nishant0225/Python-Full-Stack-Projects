@@ -1,5 +1,5 @@
 from django.db import models
-from huggingface_hub import User
+from django.conf import settings
 
 class CategoryModelClass(models.Model):
     id=models.AutoField(primary_key=True)
@@ -19,7 +19,15 @@ class ProductModelCLass(models.Model):
         return self.name
     
 class CartModelClass(models.Model):
-    id=models.AutoField(primary_key=True)
-    product = models.ForeignKey(ProductModelCLass, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE
+    )
+    product = models.ForeignKey(
+        ProductModelCLass,
+        on_delete=models.CASCADE
+    )
+    quantity = models.IntegerField(default=1)
+
     def __str__(self):
-        return self.name
+        return f"{self.user} - {self.product.name}"

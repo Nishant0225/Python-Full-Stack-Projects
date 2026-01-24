@@ -1,6 +1,5 @@
-from unicodedata import category
+
 from django.shortcuts import render,redirect
-from requests import request
 from . import models
 from django.contrib.auth.models import User
 from django.contrib.auth import login
@@ -80,13 +79,28 @@ def profile_view(request):
     return render(request, "profile.html")
 
 @login_required
-def cart_view(request,product_id):
-        if request.method=="POST":
-            product=ProductModelCLass.objects.get(id=product_id)
-            user=request.user
-            cart_item=CartModelClass.objects.create(user=user,product=product)
+def addcart_view(request, product_id):
+    if request.method == "POST":
+        product = ProductModelCLass.objects.get(id=product_id)
+        user = request.user
+
+        # prevent duplicate cart items
+        cart_item, created = CartModelClass.objects.get_or_create(
+            user=user,
+            product=product
+        )
+
+        if not created:
+            cart_item.quantity += 1
             cart_item.save()
-            return redirect('storeIndex')
-        categories=CategoryModelClass.objects.all()
-        products=ProductModelCLass.objects.all()
-        return render(request,"cart.html",{'products':products,'categories':categories})
+
+    return redirect("cart")
+
+@login_required
+def cart_view(request):
+    user = request.user
+    cart_items = CartModelClass.objects.filter(user=user)
+
+    return render(request, "cart.html", {
+        "cart_items": cart_items
+    })
