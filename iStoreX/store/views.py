@@ -80,7 +80,8 @@ def profile_view(request):
     return render(request, "profile.html")
 
 @login_required
-def cart_view(request):
+def cart_view(request,product_id):
+    
         categories=CategoryModelClass.objects.all()
         products=ProductModelCLass.objects.all()
         return render(request,"cart.html",{'products':products,'categories':categories})

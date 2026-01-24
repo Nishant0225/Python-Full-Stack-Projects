@@ -189,13 +189,13 @@ body::before{
 
       {% if user.is_authenticated %}
       <!-- ADD TO CART -->
-      <form method="post" action="{% url 'cart' %}">
+      <form method="post" action="{% url 'cart' product.id %}">
         {% csrf_token %}
         <button type="submit" class="btn-glow">Add to Cart</button>
       </form>
 
       <!-- BUY NOW -->
-      <a href="{% url 'cart'  %}" class="btn-outline">
+      <a href="{% url 'cart'  product.id %}" class="btn-outline">
         Buy Now
       </a>
       {% else %}
