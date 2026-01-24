@@ -79,7 +79,7 @@ def profile_view(request):
     return render(request, "profile.html")
 
 @login_required
-def addcart_view(request, product_id):
+def addcart_view(request,product_id):
     if request.method == "POST":
         product = ProductModelCLass.objects.get(id=product_id)
         user = request.user
@@ -107,9 +107,6 @@ def cart_view(request):
     
 @login_required
 def removefromcart_view(request,cart_item_id):
-    if request.method == "POST":
-        product = ProductModelCLass.objects.get(id=cart_item_id)
-        user = request.user
-        itemdelete=CartModelClass.objects.get(user=user,product=product)
-        itemdelete.delete()
+    cart_item = CartModelClass.objects.get(id=cart_item_id)
+    cart_item.delete()
     return redirect("cart")
