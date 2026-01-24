@@ -1,4 +1,6 @@
+from unicodedata import category
 from django.shortcuts import render,redirect
+from requests import request
 from . import models
 from django.contrib.auth.models import User
 from django.contrib.auth import login
@@ -76,6 +78,9 @@ def signup_view(request):
 @login_required
 def profile_view(request):
     return render(request, "profile.html")
+
 @login_required
 def cart_view(request):
-    return render(request, "cart.html")
+        categories=CategoryModelClass.objects.all()
+        products=ProductModelCLass.objects.all()
+        return render(request,"cart.html",{'products':products,'categories':categories})
