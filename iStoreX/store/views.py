@@ -138,7 +138,7 @@ def billing_view(request):
         "total_amount": total_amount,
     })
 
-def fake_payment_view(request, final_amount):
+def fake_payment_view(request):
     user = request.user
     cart_items = CartModelClass.objects.filter(user=user)
 
