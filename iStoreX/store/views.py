@@ -140,3 +140,8 @@ def billing_view(request):
 
 def fake_payment_view(request):
     return render(request, "fake_payment.html")
+
+@login_required
+def payment_success_view(request):
+    CartModelClass.objects.filter(user=request.user).delete()
+    return render(request, "payment_success.html")
