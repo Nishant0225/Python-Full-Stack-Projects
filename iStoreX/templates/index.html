@@ -569,7 +569,15 @@ body{
 <p class="lead mt-3">
 Luxury Apple devices with futuristic shopping experience.
 </p>
-<button class="btn-glow mt-3">Shop Collection</button>
+<div>
+
+  <button class="btn-glow mt-3"
+          onclick="window.location.href='{% url 'collections' %}'">
+    View Collection
+  </button>
+</div>
+
+
 </div>
 </div>
 
@@ -696,7 +704,9 @@ Luxury Apple devices with futuristic shopping experience.
 <div class="col-lg-5 reveal">
   <h2 class="fw-bold display-6">New Arrivals</h2>
   <p class="lead mt-3">The latest Apple devices. Designed to impress.</p>
-  <button class="btn-glow mt-3">View Collection</button>
+  <a href="{% url 'collections' %}">
+    <button class="btn-glow mt-3">View Collection</button>
+  </a>
 </div>
 
 <div class="col-lg-7">
