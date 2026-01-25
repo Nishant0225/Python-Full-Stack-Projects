@@ -139,8 +139,24 @@ def billing_view(request):
     })
 
 def fake_payment_view(request, final_amount):
+    user = request.user
+    cart_items = CartModelClass.objects.filter(user=user)
+
+    subtotal = sum(
+        item.product.price * item.quantity
+        for item in cart_items
+    )
+
+    gst_rate = Decimal("0.18")   # 18% GST
+    gst_amount = (subtotal * gst_rate).quantize(Decimal("0.01"))
+
+    delivery_charge = Decimal("99.00") if subtotal > 0 else Decimal("0.00")
+
+    total_amount = (subtotal + gst_amount + delivery_charge).quantize(
+        Decimal("0.01")
+    )
     return render(request, "fake_payment.html", {
-        "final_amount": final_amount
+        "total_amount": total_amount
     })
 
 @login_required
