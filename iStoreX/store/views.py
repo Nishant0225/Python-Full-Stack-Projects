@@ -138,9 +138,10 @@ def billing_view(request):
         "total_amount": total_amount,
     })
 
-def fake_payment_view(request):
-    final_amount=request.GET.get("amount")
-    return render(request, "fake_payment.html")
+def fake_payment_view(request, final_amount):
+    return render(request, "fake_payment.html", {
+        "final_amount": final_amount
+    })
 
 @login_required
 def payment_success_view(request):
