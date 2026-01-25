@@ -168,11 +168,16 @@ body::before{
         <span>₹ {{ total_amount }}</span>
       </div>
 
-      <div class="text-center mt-4">
-        <a href="{% url 'fake_payment' %}" class="btn-glow">
-          Proceed to Payment
-        </a>
-      </div>
+   <div class="d-flex justify-content-center gap-3 mt-4">
+  <a href="{% url 'cart' %}" class="btn-outline-glow">
+    ← Back to Cart
+  </a>
+
+  <a href="{% url 'fake_payment' %}" class="btn-glow">
+    Proceed to Payment →
+  </a>
+</div>
+
 
     </div>
 
