@@ -19,5 +19,5 @@ urlpatterns = [
     path("fake-payment/", views.fake_payment_view, name="fake_payment"),
     path("payment-success/", views.payment_success_view, name="payment_success"),
     path("buy-now/<int:product_id>/", views.buy_now_view, name="buy_now"),
-
+    path("collections/", views.collections_view, name="collections"),
 ]
