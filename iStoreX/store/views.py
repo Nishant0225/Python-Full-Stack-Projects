@@ -180,3 +180,7 @@ def fake_payment_view(request):
 def payment_success_view(request):
     CartModelClass.objects.filter(user=request.user).delete()
     return render(request, "payment_success.html")
+
+def collections_view(request):
+    categories=CategoryModelClass.objects.all()
+    return render(request,"collections.html",{'categories':categories})
