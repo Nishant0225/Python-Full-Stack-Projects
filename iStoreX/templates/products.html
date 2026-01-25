@@ -195,9 +195,10 @@ body::before{
       </form>
 
       <!-- BUY NOW -->
-      <a href="{% url 'cart'  %}" class="btn-outline">
-        Buy Now
-      </a>
+   <a href="{% url 'buy_now' product.id %}" class="btn-outline">
+  Buy Now
+</a>
+
       {% else %}
       <a href="{% url 'login' %}?next={{ request.path }}" class="btn-glow">
         Login to Add
