@@ -474,6 +474,28 @@ body{
 .btn-login:active{
   transform:scale(0.92);
 }
+/* USER NAME PILL */
+.user-pill{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  color:white;
+  padding:8px 18px;
+  border-radius:999px;
+  backdrop-filter:blur(20px);
+  font-size:14px;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:.35s ease;
+}
+
+.user-pill:hover{
+  background:rgba(255,255,255,0.15);
+  box-shadow:0 0 18px rgba(255,255,255,0.35);
+  transform:translateY(-1px);
+}
+
 /* FOOTER COPYRIGHT */
 .footer{
   border-top:1px solid rgba(255,255,255,0.08);
@@ -508,9 +530,10 @@ body{
 <div class="d-flex gap-3">
 
 {% if user.is_authenticated %}
-  <a href="{% url 'profile' %}" class="text-white me-3">
-    {{ user.username }}
-  </a>
+ <a href="{% url 'profile' %}" class="user-pill">
+  👤 {{ user.username }}
+</a>
+
   <form method="post" action="{% url 'cart' %}" class="d-inline">
   {% csrf_token %}
   <button type="submit" class="btn btn-login">
