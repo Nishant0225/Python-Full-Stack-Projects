@@ -113,30 +113,27 @@ def removefromcart_view(request,cart_item_id):
 
 @login_required
 def billing_view(request):
-    user = request.user
-    cart_items = CartModelClass.objects.filter(user=user)
+    cart_items = CartModelClass.objects.filter(user=request.user)
 
-    subtotal = sum(
-        item.product.price * item.quantity
-        for item in cart_items
-    )
+    subtotal = Decimal('0')
 
-    gst_rate = Decimal("0.18")   # 18% GST
-    gst_amount = (subtotal * gst_rate).quantize(Decimal("0.01"))
+    for item in cart_items:
+        item.total_price = item.product.price * item.quantity
+        subtotal += item.total_price
 
-    delivery_charge = Decimal("99.00") if subtotal > 0 else Decimal("0.00")
+    gst_amount = subtotal * Decimal('0.18')
+    delivery_charge = Decimal('99.00') if subtotal < Decimal('50000') else Decimal('0')
+    total_amount = subtotal + gst_amount + delivery_charge
 
-    total_amount = (subtotal + gst_amount + delivery_charge).quantize(
-        Decimal("0.01")
-    )
+    context = {
+        'cart_items': cart_items,
+        'subtotal': subtotal,
+        'gst_amount': gst_amount,
+        'delivery_charge': delivery_charge,
+        'total_amount': total_amount,
+    }
 
-    return render(request, "billing.html", {
-        "cart_items": cart_items,
-        "subtotal": subtotal,
-        "gst_amount": gst_amount,
-        "delivery_charge": delivery_charge,
-        "total_amount": total_amount,
-    })
+    return render(request, 'billing.html', context)
 
 @login_required
 def buy_now_view(request, product_id):
