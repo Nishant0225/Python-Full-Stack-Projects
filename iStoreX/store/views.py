@@ -139,6 +139,7 @@ def billing_view(request):
     })
 
 def fake_payment_view(request):
+    final_amount=request.GET.get("amount")
     return render(request, "fake_payment.html")
 
 @login_required
