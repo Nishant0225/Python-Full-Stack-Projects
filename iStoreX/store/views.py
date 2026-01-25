@@ -137,3 +137,6 @@ def billing_view(request):
         "delivery_charge": delivery_charge,
         "total_amount": total_amount,
     })
+
+def fake_payment_view(request):
+    return render(request, "fake_payment.html")
