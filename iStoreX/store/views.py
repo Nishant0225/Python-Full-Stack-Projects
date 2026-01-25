@@ -4,6 +4,7 @@ from . import models
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from .models import *
+from decimal import Decimal
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
@@ -115,9 +116,25 @@ def removefromcart_view(request,cart_item_id):
 def billing_view(request):
     user = request.user
     cart_items = CartModelClass.objects.filter(user=user)
-    total_amount = sum(item.product.price * item.quantity for item in cart_items)
+
+    subtotal = sum(
+        item.product.price * item.quantity
+        for item in cart_items
+    )
+
+    gst_rate = Decimal("0.18")   # 18% GST
+    gst_amount = (subtotal * gst_rate).quantize(Decimal("0.01"))
+
+    delivery_charge = Decimal("99.00") if subtotal > 0 else Decimal("0.00")
+
+    total_amount = (subtotal + gst_amount + delivery_charge).quantize(
+        Decimal("0.01")
+    )
 
     return render(request, "billing.html", {
         "cart_items": cart_items,
-        "total_amount": total_amount
+        "subtotal": subtotal,
+        "gst_amount": gst_amount,
+        "delivery_charge": delivery_charge,
+        "total_amount": total_amount,
     })
