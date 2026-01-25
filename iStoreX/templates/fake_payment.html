@@ -118,11 +118,12 @@ body::before{
 
     <input type="text" class="form-control mb-3" placeholder="Card Holder Name" value="Demo User">
 
-   <a href="{% url 'payment_success' %}">
-     <button type="submit" class="btn-pay">
-       Pay ₹ {{ total_amount }}
+    <a href="{% url 'payment_success' %}">
+      <button type="button" class="btn-pay">
+        Pay ₹ {{ total_amount }}
       </button>
     </a>
+
   </form>
 
   <div class="secure-text">

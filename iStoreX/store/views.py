@@ -138,6 +138,23 @@ def billing_view(request):
         "total_amount": total_amount,
     })
 
+@login_required
+def buy_now_view(request, product_id):
+    product = ProductModelCLass.objects.get(id=product_id)
+
+    # Clear existing cart (Buy Now = single product checkout)
+    CartModelClass.objects.filter(user=request.user).delete()
+
+    # Add selected product to cart
+    CartModelClass.objects.create(
+        user=request.user,
+        product=product,
+        quantity=1
+    )
+
+    # Redirect directly to billing page
+    return redirect("billing")
+
 def fake_payment_view(request):
     user = request.user
     cart_items = CartModelClass.objects.filter(user=user)
