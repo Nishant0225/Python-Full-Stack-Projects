@@ -25,6 +25,34 @@ body::before{
   background:radial-gradient(circle at top,#0a0a0a,#000);
   z-index:-2;
 }
+ /* NAVBAR */
+.navbar{
+  height:76px;
+  backdrop-filter:blur(20px);
+  background:rgba(0,0,0,.78)!important;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.nav-link{
+  color:white!important;
+  position:relative;
+  padding-bottom:6px;
+}
+
+.nav-link::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#fff,#aaa);
+  transform:translateX(-50%);
+  transition:.35s;
+}
+
+.nav-link:hover::after{width:100%}
+
 </style>
 </head>
 
