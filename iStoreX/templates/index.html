@@ -154,6 +154,8 @@ body{
 /* CINEMATIC LIGHT SWEEPS */
 .hero::before,
 .hero::after{
+  pointer-events: none;
+}
   content:"";
   position:absolute;
   width:120%;
@@ -511,6 +513,13 @@ body{
   color:rgba(255,255,255,0.7);
   letter-spacing:.5px;
 }
+/* PREVENT ALL DECORATIVE LAYERS FROM BLOCKING CLICKS */
+.hero::before,
+.hero::after,
+.glass::after,
+.btn-glow::after{
+  pointer-events: none;
+}
 
 </style>
 </head>
@@ -571,10 +580,12 @@ Luxury Apple devices with futuristic shopping experience.
 </p>
 <div>
 
-  <button class="btn-glow mt-3"
-          onclick="window.location.href='{% url 'collections' %}'">
+<a href="{% url 'collections' %}">
+  <button class="btn-glow mt-3">
     View Collection
   </button>
+</a>
+
 </div>
 
 
