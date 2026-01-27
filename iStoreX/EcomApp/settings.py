@@ -5,31 +5,30 @@ Django settings for EcomApp project.
 from pathlib import Path
 import os
 
-# =========================
+# ======================
 # BASE
-# =========================
+# ======================
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# =========================
-# SECURITY
-# =========================
+# ======================
+# SECURITY (FORCE FIX)
+# ======================
 SECRET_KEY = os.getenv(
     "SECRET_KEY",
-    "django-insecure-render-fallback-key"
+    "django-insecure-render-force-fallback"
 )
 
-DEBUG = True  # 🔥 TEMPORARY – change to False after confirmation
+DEBUG = True  # 🔥 MUST be True for now
 
-ALLOWED_HOSTS = [
-    "istorex.onrender.com",
-    ".onrender.com",
-    "localhost",
-    "127.0.0.1",
-]
+# 🔥 ACCEPT ALL HOSTS (RENDER FIX)
+ALLOWED_HOSTS = ["*"]
 
-# =========================
+# ❌ REMOVE CSRF TRUST COMPLETELY
+CSRF_TRUSTED_ORIGINS = []
+
+# ======================
 # APPLICATIONS
-# =========================
+# ======================
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -40,9 +39,9 @@ INSTALLED_APPS = [
     "store",
 ]
 
-# =========================
+# ======================
 # MIDDLEWARE
-# =========================
+# ======================
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
@@ -54,9 +53,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# =========================
-# URLS & TEMPLATES
-# =========================
+# ======================
+# URLS / TEMPLATES
+# ======================
 ROOT_URLCONF = "EcomApp.urls"
 
 TEMPLATES = [
@@ -77,9 +76,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "EcomApp.wsgi.application"
 
-# =========================
+# ======================
 # DATABASE
-# =========================
+# ======================
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -87,9 +86,9 @@ DATABASES = {
     }
 }
 
-# =========================
+# ======================
 # PASSWORD VALIDATION
-# =========================
+# ======================
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -97,41 +96,41 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# =========================
-# INTERNATIONALIZATION
-# =========================
+# ======================
+# I18N
+# ======================
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# =========================
-# STATIC FILES (RENDER + WHITENOISE)
-# =========================
+# ======================
+# STATIC FILES (WHITENOISE)
+# ======================
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# =========================
-# MEDIA FILES
-# =========================
+# ======================
+# MEDIA
+# ======================
 MEDIA_URL = "/uploads/"
 MEDIA_ROOT = BASE_DIR / "uploads"
 
-# =========================
-# AUTH REDIRECTS
-# =========================
+# ======================
+# AUTH
+# ======================
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/profile/"
 LOGOUT_REDIRECT_URL = "/"
 
-# =========================
-# RENDER PROXY SETTINGS (CRITICAL)
-# =========================
+# ======================
+# RENDER PROXY (SAFE)
+# ======================
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 USE_X_FORWARDED_HOST = False
 
-# =========================
+# ======================
 # DEFAULT PK
-# =========================
+# ======================
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
