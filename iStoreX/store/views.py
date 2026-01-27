@@ -182,5 +182,17 @@ def payment_success_view(request):
     return render(request, "payment_success.html")
 
 def collections_view(request):
-    categories=CategoryModelClass.objects.all()
-    return render(request,"collections.html",{'categories':categories})
+    categories = CategoryModelClass.objects.all()
+
+    category_products = []
+    for category in categories:
+        products = ProductModelCLass.objects.filter(category=category)[:4]
+        category_products.append({
+            "name": category.name,
+            "products": products
+        })
+
+    return render(request, "collections.html", {
+        "categories": categories,
+        "category_products": category_products
+    })
