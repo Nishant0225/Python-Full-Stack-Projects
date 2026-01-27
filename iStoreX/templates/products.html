@@ -9,7 +9,58 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-  /* LOGIN BUTTON - APPLE STYLE */
+*{font-family:Poppins,sans-serif}
+
+body{
+  background:#000;
+  color:white;
+  overflow-x:hidden;
+  padding-top:76px;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle at top,#0a0a0a,#000);
+  z-index:-2;
+}
+
+/* NAVBAR */
+.navbar{
+  backdrop-filter:blur(20px);
+  background:rgba(0,0,0,.78)!important;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.nav-link{
+  color:white!important;
+  position:relative;
+  padding-bottom:6px;
+  transition:transform .18s ease;
+  overflow:hidden;
+}
+
+.nav-link::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:linear-gradient(90deg,#ffffff,#aaaaaa);
+  transform:translateX(-50%);
+  transition:width .35s ease;
+  border-radius:2px;
+}
+
+.nav-link:hover::after{width:100%}
+
+.nav-link:active{
+  transform:scale(0.92);
+}
+
+/* LOGIN BUTTON */
 .btn-login{
   background:rgba(255,255,255,0.08);
   border:1px solid rgba(255,255,255,0.18);
@@ -30,7 +81,7 @@
   transform:scale(0.92);
 }
 
-/* USER NAME PILL */
+/* USER PILL */
 .user-pill{
   background:rgba(255,255,255,0.08);
   border:1px solid rgba(255,255,255,0.18);
@@ -51,51 +102,6 @@
   box-shadow:0 0 18px rgba(255,255,255,0.35);
   transform:translateY(-1px);
 }
-
-*{font-family:Poppins,sans-serif}
-
-body{
-  background:#000;
-  color:white;
-  overflow-x:hidden;
-  padding-top:76px;
-}
-
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:radial-gradient(circle at top,#0a0a0a,#000);
-  z-index:-2;
-}
-
-/* NAVBAR */
-.navbar{
-  height:76px;
-  backdrop-filter:blur(20px);
-  background:rgba(0,0,0,.78)!important;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-.nav-link{
-  color:white!important;
-  position:relative;
-  padding-bottom:6px;
-}
-
-.nav-link::after{
-  content:"";
-  position:absolute;
-  left:50%;
-  bottom:0;
-  width:0%;
-  height:2px;
-  background:linear-gradient(90deg,#fff,#aaa);
-  transform:translateX(-50%);
-  transition:.35s;
-}
-
-.nav-link:hover::after{width:100%}
 
 /* PAGE HEADER */
 .page-header{
@@ -171,7 +177,6 @@ body::before{
   transform:translateY(0);
 }
 </style>
-
 </head>
 
 <body>
@@ -204,16 +209,12 @@ body::before{
 
           <form method="post" action="{% url 'cart' %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-login">
-              Cart
-            </button>
+            <button type="submit" class="btn btn-login">Cart</button>
           </form>
 
           <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn-login">
-              Logout
-            </button>
+            <button type="submit" class="btn btn-login">Logout</button>
           </form>
         {% else %}
           <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-login">
@@ -224,7 +225,6 @@ body::before{
     </div>
   </div>
 </nav>
-
 
 <!-- HEADER -->
 <section class="page-header">
@@ -241,34 +241,26 @@ body::before{
 {% for product in products %}
 <div class="col-lg-3 col-md-4 col-sm-6 reveal">
   <div class="product text-center">
-
     <img src="{{ product.image.url }}" alt="{{ product.name }}">
-
     <h6>{{ product.name }}</h6>
     <p class="price">₹ {{ product.price }}</p>
 
     <div class="d-grid gap-3">
-
       {% if user.is_authenticated %}
-      <!-- ADD TO CART -->
       <form method="post" action="{% url 'addcart' product.id %}">
         {% csrf_token %}
         <button type="submit" class="btn-glow">Add to Cart</button>
       </form>
 
-      <!-- BUY NOW -->
-   <a href="{% url 'buy_now' product.id %}" class="btn-outline">
-  Buy Now
-</a>
-
+      <a href="{% url 'buy_now' product.id %}" class="btn-outline">
+        Buy Now
+      </a>
       {% else %}
       <a href="{% url 'login' %}?next={{ request.path }}" class="btn-glow">
         Login to Add
       </a>
       {% endif %}
-
     </div>
-
   </div>
 </div>
 {% endfor %}
