@@ -131,4 +131,5 @@ LOGIN_REDIRECT_URL = "/profile/"
 LOGOUT_REDIRECT_URL = "/"
 DEBUG = False
 ALLOWED_HOSTS = ['.railway.app', 'localhost', '127.0.0.1']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
