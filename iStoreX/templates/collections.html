@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>iStoreX — Products</title>
+<title>iStoreX — Collections</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -23,14 +23,13 @@ body::before{
   position:fixed;
   inset:0;
   background:radial-gradient(circle at top,#0a0a0a,#000);
-  z-index:-2;
+  z-index:-1;
 }
 
 /* NAVBAR */
 .navbar{
-  height:76px;
   backdrop-filter:blur(20px);
-  background:rgba(0,0,0,.78)!important;
+  background:rgba(0,0,0,.75)!important;
   border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
@@ -51,23 +50,31 @@ body::before{
   transform:translateX(-50%);
   transition:.35s;
 }
-
 .nav-link:hover::after{width:100%}
 
-/* PAGE HEADER */
+/* LOGIN */
+.btn-login{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  color:white;
+  padding:8px 22px;
+  border-radius:20px;
+}
+.user-pill{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.18);
+  color:white;
+  padding:8px 18px;
+  border-radius:999px;
+  text-decoration:none;
+}
+
+/* HEADER */
 .page-header{
-  padding:50px 0 30px;
   text-align:center;
+  padding:50px 0 40px;
 }
-
-.page-header h1{
-  font-size:2.2rem;
-  font-weight:600;
-}
-
-.page-header p{
-  color:rgba(255,255,255,.6);
-}
+.page-header p{color:rgba(255,255,255,.65)}
 
 /* PRODUCT CARD */
 .product{
@@ -79,50 +86,37 @@ body::before{
   transition:.45s;
   height:100%;
 }
-
 .product:hover{
   transform:translateY(-10px);
   box-shadow:0 26px 60px rgba(0,0,0,.9);
 }
-
 .product img{
   width:100%;
   height:220px;
   object-fit:contain;
-  margin-bottom:14px;
   filter:drop-shadow(0 35px 70px rgba(0,0,0,.9));
 }
+.price{font-weight:600}
 
-.price{
-  font-weight:600;
-  margin-bottom:14px;
+/* SECTION TITLE */
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+.section-title a{
+  color:#aaa;
+  text-decoration:none;
+  font-size:14px;
 }
 
-/* BUTTONS */
-.btn-glow{
-  background:linear-gradient(135deg,#111,#000);
-  border:none;
-  color:white;
-  padding:11px;
-  border-radius:40px;
-  width:100%;
-}
-
-.btn-outline{
-  border:1px solid rgba(255,255,255,.25);
-  background:transparent;
-  color:white;
-  padding:11px;
-  border-radius:40px;
-  width:100%;
-}
-
+/* REVEAL */
 .reveal{
   opacity:0;
-  transform:translateY(30px);
-  transition:.9s ease;
+  transform:translateY(40px);
+  transition:1s ease;
 }
-
 .reveal.active{
   opacity:1;
   transform:translateY(0);
@@ -134,97 +128,81 @@ body::before{
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top">
-<div class="container">
-<a class="navbar-brand fw-bold text-white">iStoreX</a>
+  <div class="container">
+    <a class="navbar-brand fw-bold text-white">iStoreX</a>
 
-<div class="collapse navbar-collapse show">
-<ul class="navbar-nav mx-auto">
-<li class="nav-item"><a class="nav-link" href="{% url 'storeIndex' %}">Home</a></li>
-{% for item in categories %}
-<li class="nav-item">
-  <a class="nav-link" href="{% url 'products' item.name %}">{{ item.name }}</a>
-</li>
-{% endfor %}
-</ul>
+    <div class="collapse navbar-collapse show">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'storeIndex' %}">Home</a></li>
+        {% for item in categories %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'products' item.name %}">{{ item.name }}</a>
+        </li>
+        {% endfor %}
+      </ul>
 
-{% if user.is_authenticated %}
-  <a href="{% url 'profile' %}" class="text-white me-3 text-decoration-none">
-    Hi, {{ user.username }}
-  </a>
-  <form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-outline-light">Logout</button>
-  </form>
-{% else %}
-  <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-outline-light">
-    Login
-  </a>
-{% endif %}
-</div>
-</div>
+      <div class="d-flex gap-3">
+        {% if user.is_authenticated %}
+          <a href="{% url 'profile' %}" class="user-pill">👤 {{ user.username }}</a>
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="btn btn-login">Logout</button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-login">Login</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </nav>
 
 <!-- HEADER -->
 <section class="page-header">
   <div class="container">
-    <h1>{{ category_name }}</h1>
-    <p>Designed to feel like Apple.</p>
+    <h1>Trending Collections</h1>
+    <p>Top Apple devices, hand-picked for you.</p>
   </div>
 </section>
 
-<!-- PRODUCTS -->
+<!-- TRENDING PRODUCTS -->
 <section class="container pb-5">
-<div class="row g-4">
 
-{% for product in products %}
-<div class="col-lg-3 col-md-4 col-sm-6 reveal">
-  <div class="product text-center">
+{% for cat in category_products %}
+  {% if cat.products %}
+  <div class="mb-5">
 
-    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    <div class="section-title reveal">
+      <h3>{{ cat.name }}</h3>
+      <a href="{% url 'products' cat.name %}">View all →</a>
+    </div>
 
-    <h6>{{ product.name }}</h6>
-    <p class="price">₹ {{ product.price }}</p>
-
-    <div class="d-grid gap-3">
-
-      {% if user.is_authenticated %}
-      <!-- ADD TO CART -->
-      <form method="post" action="{% url 'addcart' product.id %}">
-        {% csrf_token %}
-        <button type="submit" class="btn-glow">Add to Cart</button>
-      </form>
-
-      <!-- BUY NOW -->
-   <a href="{% url 'buy_now' product.id %}" class="btn-outline">
-  Buy Now
-</a>
-
-      {% else %}
-      <a href="{% url 'login' %}?next={{ request.path }}" class="btn-glow">
-        Login to Add
-      </a>
-      {% endif %}
-
+    <div class="row g-4">
+      {% for product in cat.products %}
+      <div class="col-lg-3 col-md-4 col-sm-6 reveal">
+        <div class="product text-center">
+          <img src="{{ product.image.url }}">
+          <h6 class="mt-3">{{ product.name }}</h6>
+          <p class="price">₹ {{ product.price }}</p>
+        </div>
+      </div>
+      {% endfor %}
     </div>
 
   </div>
-</div>
+  {% endif %}
 {% endfor %}
 
-</div>
 </section>
-
 <script>
-const revealElements=document.querySelectorAll(".reveal");
 function reveal(){
-  revealElements.forEach(el=>{
-    if(el.getBoundingClientRect().top<window.innerHeight-60){
+  document.querySelectorAll(".reveal").forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight - 80){
       el.classList.add("active");
     }
   });
 }
-window.addEventListener("scroll",reveal);
-window.addEventListener("load",reveal);
+window.addEventListener("scroll", reveal);
+window.addEventListener("load", reveal);
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
