@@ -21,13 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)8=&nf+vwvef9xs@omm@pp^$y0=2t2kke=&#43+7s3q1+e=b(*'
+SECRET_KEY = os.getenv("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
-ALLOWED_HOSTS = [host.strip() for host in ALLOWED_HOSTS if host]
+ALLOWED_HOSTS = [
+    "istorex.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
+
 CSRF_TRUSTED_ORIGINS = [
     "https://istorex.onrender.com",
 ]
@@ -137,7 +141,9 @@ MEDIA_ROOT=BASE_DIR/'uploads/'
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/profile/"
 LOGOUT_REDIRECT_URL = "/"
-DEBUG = False
+DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = ['.railway.app', 'localhost', '127.0.0.1']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
