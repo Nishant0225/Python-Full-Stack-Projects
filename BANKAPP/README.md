@@ -1,13 +1,37 @@
-▶️ Run the Project
+🏦 BANKAPP – Flask Banking Web Application
 
-```bash
-cd BANKAPP
-py app.py runserver
-Open your browser and visit:
+BANKAPP is a Flask-based banking web application that implements core banking workflows, including user authentication, account management, and secure financial transactions. The project follows backend best practices and mirrors real-world banking logic.
+___________________________________________________________________________________________________________________________________________________
 
-http://127.0.0.1:5000/
-🔐 Login Credentials
-The application will first ask for a username and password.
+🚀 Key Features
+
+* Secure user registration and login using Flask sessions
+* Account balance creation and real-time updates
+* Deposit and withdrawal operations with server-side validation
+* Transaction tracking to ensure data consistency
+* Persistent data storage using SQLite database
+___________________________________________________________________________________________________________________________________________________
+
+🛠️ Tech Stack
+
+Backend: Python, Flask
+
+Frontend: HTML, CSS, Bootstrap
+
+Database: SQLite3
+___________________________________________________________________________________________________________________________________________________
+
+⚙️ Run Locally
+
+git clone https://github.com/Nishant0225/Python-Full-Stack-Projects
+
+cd Python_Full_stack_Projects/BANKAPP
+
+pip install -r requirements.txt
+
+python app.py
+
+Application runs at: http://127.0.0.1:5000/
 
 Default Admin Login:
 
