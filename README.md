@@ -24,12 +24,12 @@ ________________________________________________________________________________
 
 🎯 Projects
 
-Project     | Framework | Description
------------ | --------- | -------------------------------------------------------
-BANKAPP     | Flask     | Banking system with account management and transactions
-EcomApp     | Django    | E-commerce platform with authentication and admin panel
-iStoreX     | Django    | Online store with product and order management
-SENSAI      | Django    | Structured Django application with modular design
+Project           | Framework | Description
+----------------- | --------- | -------------------------------------------------------
+BANKAPP           | Flask     | Banking system with account management and transactions
+DjangoEcomApp     | Django    | E-commerce platform with authentication and admin panel
+iStoreX           | Django    | Online store with product and order management
+tech_sensai       | Django    | Structured Django application with modular design
 ___________________________________________________________________________________________________________________________________________________
 
 🛠️ Tech Stack
