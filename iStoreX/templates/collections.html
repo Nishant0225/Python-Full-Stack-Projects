@@ -124,96 +124,11 @@ body::before{
 <p style="color:red">
   trending_products = {{ trending_products }}
 </p>
-/* ---------------- RESPONSIVE FIXES ---------------- */
-
-/* Large tablets & below */
-@media (max-width: 991px) {
-
-  body {
-    padding-top: 70px;
-  }
-
-  .page-header {
-    padding: 40px 0 30px;
-  }
-
-  .page-header h1 {
-    font-size: 2.1rem;
-  }
-
-  .product img {
-    height: 200px;
-  }
-
-  .section-title h3 {
-    font-size: 1.3rem;
-  }
+body{
+  padding-top: 80px;
 }
-
-/* Tablets */
-@media (max-width: 768px) {
-
-  .navbar .collapse {
-    background: rgba(0,0,0,.9);
-    backdrop-filter: blur(20px);
-    padding: 14px;
-    border-radius: 16px;
-  }
-
-  .navbar-nav {
-    gap: 6px;
-    text-align: center;
-  }
-
-  .section-title {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-
-  .product img {
-    height: 190px;
-  }
-}
-
-/* Mobile devices */
-@media (max-width: 576px) {
-
-  body {
-    padding-top: 64px;
-  }
-
-  .page-header {
-    padding: 32px 0 24px;
-  }
-
-  .page-header h1 {
-    font-size: 1.75rem;
-  }
-
-  .page-header p {
-    font-size: 14px;
-  }
-
-  .section-title h3 {
-    font-size: 1.2rem;
-  }
-
-  .section-title a {
-    font-size: 13px;
-  }
-
-  .product {
-    padding: 20px;
-  }
-
-  .product img {
-    height: 160px;
-  }
-
-  .price {
-    font-size: 15px;
-  }
+.navbar-toggler-icon{
+  filter: invert(1);
 }
 
 </style>
@@ -224,28 +139,64 @@ body::before{
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
-    <a class="navbar-brand fw-bold text-white">iStoreX</a>
 
-    <div class="collapse navbar-collapse show">
-      <ul class="navbar-nav mx-auto">
-        <li class="nav-item"><a class="nav-link" href="{% url 'storeIndex' %}">Home</a></li>
+    <!-- BRAND -->
+    <a class="navbar-brand fw-bold text-white" href="{% url 'storeIndex' %}">
+      iStoreX
+    </a>
+
+    <!-- TOGGLER BUTTON (VISIBLE ON MOBILE) -->
+    <button class="navbar-toggler border-0" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- COLLAPSIBLE MENU -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+
+      <!-- CENTER LINKS -->
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'storeIndex' %}">Home</a>
+        </li>
+
         {% for item in categories %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'products' item.name %}">{{ item.name }}</a>
+          <a class="nav-link" href="{% url 'products' item.name %}">
+            {{ item.name }}
+          </a>
         </li>
         {% endfor %}
       </ul>
 
-      <div class="d-flex gap-3">
+      <!-- RIGHT SIDE -->
+      <div class="d-flex gap-3 align-items-center justify-content-center flex-lg-row flex-column">
+
         {% if user.is_authenticated %}
-          <a href="{% url 'profile' %}" class="user-pill">👤 {{ user.username }}</a>
+          <a href="{% url 'profile' %}" class="user-pill">
+            👤 {{ user.username }}
+          </a>
+
+          <form method="post" action="{% url 'cart' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-login">Cart</button>
+          </form>
+
           <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button class="btn btn-login">Logout</button>
+            <button type="submit" class="btn btn-login">Logout</button>
           </form>
+
         {% else %}
-          <a href="{% url 'login' %}" class="btn btn-login">Login</a>
+          <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-login">
+            Login
+          </a>
         {% endif %}
+
       </div>
     </div>
   </div>
@@ -275,7 +226,11 @@ body::before{
       {% for product in cat.products %}
       <div class="col-lg-3 col-md-4 col-sm-6 reveal">
         <div class="product text-center">
-          <img src="{{ product.image.url }}">
+{% if product.image %}
+  <img src="{{ product.image.url }}" alt="{{ product.name }}">
+{% else %}
+  <img src="/static/images/no-image.png" alt="No image">
+{% endif %}
           <h6 class="mt-3">{{ product.name }}</h6>
           <p class="price">₹ {{ product.price }}</p>
         </div>
