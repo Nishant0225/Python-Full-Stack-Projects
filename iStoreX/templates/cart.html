@@ -118,6 +118,91 @@ body::before{
   color:rgba(255,255,255,.6);
   margin-top:80px;
 }
+  /* ---------------- RESPONSIVE FIXES ---------------- */
+
+/* Tablets and below */
+@media (max-width: 991px) {
+
+  body {
+    padding-top: 70px;
+  }
+
+  .page-title h1 {
+    font-size: 2rem;
+  }
+
+  .cart-card {
+    padding: 20px;
+  }
+
+  .cart-img {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 576px) {
+
+  .page-title {
+    margin-bottom: 28px;
+  }
+
+  .page-title h1 {
+    font-size: 1.7rem;
+  }
+
+  .page-title p {
+    font-size: 14px;
+  }
+
+  /* Stack cart card */
+  .cart-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .cart-img {
+    width: 75px;
+    height: 75px;
+  }
+
+  .cart-info h5 {
+    font-size: 16px;
+  }
+
+  .cart-info p {
+    font-size: 13px;
+  }
+
+  .cart-price {
+    font-size: 15px;
+  }
+
+  /* Remove button alignment */
+  .cart-card .btn-glow {
+    align-self: flex-end;
+    padding: 10px 24px;
+  }
+
+  /* Action buttons stack */
+  .text-center.d-flex {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .btn-glow,
+  .btn-proceed {
+    width: 100%;
+    text-align: center;
+  }
+
+  .empty-cart {
+    margin-top: 50px;
+  }
+}
+
 </style>
 </head>
 
