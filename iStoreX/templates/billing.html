@@ -117,82 +117,6 @@ body::before{
   transform:scale(1.05);
   box-shadow:0 0 45px rgba(255,255,255,.3);
 }
-/* ---------------- RESPONSIVE FIXES ---------------- */
-
-/* Tablets & below */
-@media (max-width: 991px) {
-  body {
-    padding-top: 60px;
-  }
-
-  .page-title h1 {
-    font-size: 2rem;
-  }
-
-  .billing-card {
-    padding: 22px;
-  }
-}
-
-/* Mobile devices */
-@media (max-width: 576px) {
-
-  .page-title {
-    margin-bottom: 28px;
-  }
-
-  .page-title h1 {
-    font-size: 1.7rem;
-  }
-
-  .page-title p {
-    font-size: 14px;
-  }
-
-  /* Cart card stack */
-  .cart-card {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 18px;
-  }
-
-  .cart-img {
-    width: 70px;
-    height: 70px;
-  }
-
-  .cart-price {
-    align-self: flex-end;
-    font-size: 15px;
-  }
-
-  .billing-card {
-    margin-top: 30px;
-    padding: 20px;
-  }
-
-  .bill-row {
-    font-size: 14px;
-  }
-
-  .bill-total {
-    font-size: 18px;
-  }
-
-  /* Buttons stack on mobile */
-  .billing-card .d-flex {
-    flex-direction: column;
-  }
-
-  .btn-glow,
-  .btn-outline-glow {
-    width: 100%;
-    text-align: center;
-    padding: 12px 20px;
-  }
-}
-
 </style>
 </head>
 
@@ -253,8 +177,6 @@ body::before{
     Proceed to Payment →
   </a>
 </div>
-
-
     </div>
 
   {% else %}
