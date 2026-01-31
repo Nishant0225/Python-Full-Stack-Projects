@@ -192,106 +192,44 @@ translateY(30px);
   opacity:1;
   transform:translateY(0);
 }
- /* ---------------- RESPONSIVE FIXES ---------------- */
 
-/* Large tablets & below */
-@media (max-width: 991px) {
-
-  body {
-    padding-top: 68px;
-  }
-
-  .page-header {
-    padding: 40px 0 26px;
-  }
-
-  .page-header h1 {
-    font-size: 2rem;
-  }
-
-  .product img {
-    height: 200px;
-  }
+body{
+  padding-top: 80px;
 }
 
-/* Tablets */
-@media (max-width: 768px) {
 
-  .navbar .collapse {
-    background: rgba(0,0,0,.9);
-    backdrop-filter: blur(20px);
-    padding: 14px;
-    border-radius: 18px;
-  }
-
-  .navbar-nav {
-    text-align: center;
-    gap: 6px;
-  }
-
-  .page-header h1 {
-    font-size: 1.85rem;
-  }
-
-  .product {
-    padding: 22px;
-  }
-
-  .product img {
-    height: 185px;
-  }
-}
-
-/* Mobile devices */
-@media (max-width: 576px) {
-
-  body {
-    padding-top: 62px;
-  }
-
-  .page-header {
-    padding: 32px 0 22px;
-  }
-
-  .page-header h1 {
-    font-size: 1.6rem;
-  }
-
-  .page-header p {
-    font-size: 14px;
-  }
-
-  .product {
-    padding: 20px;
-  }
-
-  .product img {
-    height: 165px;
-  }
-
-  .price {
-    font-size: 15px;
-  }
-
-  .btn-glow,
-  .btn-outline {
-    font-size: 14px;
-    padding: 10px;
-  }
+.navbar-toggler-icon{
+  filter: invert(1);
 }
 
 </style>
 </head>
-
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container">
-    <a class="navbar-brand fw-bold text-white">iStoreX</a>
 
-    <div class="collapse navbar-collapse show">
-      <ul class="navbar-nav mx-auto">
+    <!-- BRAND -->
+    <a class="navbar-brand fw-bold text-white" href="{% url 'storeIndex' %}">
+      iStoreX
+    </a>
+
+    <!-- TOGGLER BUTTON (VISIBLE ON MOBILE) -->
+    <button class="navbar-toggler border-0" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- COLLAPSIBLE MENU -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+
+      <!-- CENTER LINKS -->
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center">
         <li class="nav-item">
           <a class="nav-link" href="{% url 'storeIndex' %}">Home</a>
         </li>
@@ -305,7 +243,9 @@ translateY(30px);
         {% endfor %}
       </ul>
 
-      <div class="d-flex gap-3 align-items-center">
+      <!-- RIGHT SIDE -->
+      <div class="d-flex gap-3 align-items-center justify-content-center flex-lg-row flex-column">
+
         {% if user.is_authenticated %}
           <a href="{% url 'profile' %}" class="user-pill">
             👤 {{ user.username }}
@@ -320,11 +260,13 @@ translateY(30px);
             {% csrf_token %}
             <button type="submit" class="btn btn-login">Logout</button>
           </form>
+
         {% else %}
           <a href="{% url 'login' %}?next={{ request.path }}" class="btn btn-login">
             Login
           </a>
         {% endif %}
+
       </div>
     </div>
   </div>
