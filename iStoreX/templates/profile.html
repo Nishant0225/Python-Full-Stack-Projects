@@ -76,6 +76,62 @@ body::before{
 .btn-profile:hover{
   transform:scale(1.05);
 }
+  /* ---------------- RESPONSIVE FIXES ---------------- */
+
+/* Tablets & below */
+@media (max-width: 768px) {
+
+  body {
+    padding: 20px;
+  }
+
+  .profile-card {
+    max-width: 400px;
+    padding: 36px;
+  }
+
+  .profile-title {
+    font-size: 1.7rem;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 576px) {
+
+  body {
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .profile-card {
+    margin-top: 40px;
+    padding: 26px 22px;
+    border-radius: 22px;
+  }
+
+  .profile-title {
+    font-size: 1.45rem;
+  }
+
+  .profile-sub {
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .profile-info {
+    padding: 14px;
+  }
+
+  .profile-info p {
+    font-size: 14px;
+  }
+
+  .btn-profile {
+    padding: 11px;
+    font-size: 15px;
+  }
+}
+
 </style>
 </head>
 
