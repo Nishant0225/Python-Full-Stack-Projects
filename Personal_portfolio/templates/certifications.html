@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certifications | Nishant Kadu</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background: radial-gradient(circle at top left, #0a122a, #020617 70%);
+    color:#e5e7eb;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:70px 20px;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:10px;
+}
+h1 span{
+    color:#4f8cff;
+    text-shadow:0 0 18px rgba(79,140,255,0.35);
+}
+
+.section{
+    margin-top:70px;
+}
+
+.section h2{
+    color:#4f8cff;
+    margin-bottom:25px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(79,140,255,0.25);
+    border-radius:14px;
+    padding:22px;
+    transition:0.35s ease;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 45px rgba(79,140,255,0.25);
+}
+
+.card h3{
+    margin:0 0 10px;
+    color:#f9fafb;
+}
+
+.card p{
+    color:#cbd5f5;
+    font-size:0.95rem;
+    line-height:1.6;
+}
+
+.badges span{
+    display:inline-block;
+    margin:6px 6px 0 0;
+    padding:6px 14px;
+    border-radius:20px;
+    background:rgba(79,140,255,0.15);
+    color:#4f8cff;
+    font-size:0.8rem;
+}
+
+.back-btn{
+    margin-top:80px;
+    display:inline-block;
+    padding:12px 30px;
+    border:2px solid #4f8cff;
+    color:#4f8cff;
+    text-decoration:none;
+    border-radius:30px;
+    transition:0.3s;
+}
+
+.back-btn:hover{
+    background:#4f8cff;
+    color:#020617;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1 data-aos="fade-right">My <span>Certifications</span></h1>
+<p data-aos="fade-up" style="max-width:850px;color:#cbd5f5;">
+A collection of my technical certifications, communication skills, and achievements in sports
+and extra-curricular activities that reflect my continuous learning and all-round development.
+</p>
+
+<!-- TECHNICAL CERTIFICATIONS -->
+<div class="section">
+<h2 data-aos="fade-right">Technical Certifications</h2>
+
+<div class="grid">
+    <div class="card" data-aos="zoom-in">
+        <h3>Full Stack Python Development</h3>
+        <p>Comprehensive certification covering backend, frontend, databases, APIs, and real-world project development.</p>
+        <div class="badges">
+            <span>Python</span><span>Flask</span><span>Django</span><span>REST API</span><span>OpenAI</span>
+        </div>
+    </div>
+
+    <div class="card" data-aos="zoom-in">
+        <h3>Frontend Development</h3>
+        <p>Strong foundation in building responsive and modern user interfaces.</p>
+        <div class="badges">
+            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Bootstrap</span>
+        </div>
+    </div>
+
+    <div class="card" data-aos="zoom-in">
+        <h3>Database Technologies</h3>
+        <p>Experience in designing and managing relational and NoSQL databases.</p>
+        <div class="badges">
+            <span>MySQL</span><span>MongoDB</span>
+        </div>
+    </div>
+
+    <div class="card" data-aos="zoom-in">
+        <h3>Project-Based Learning</h3>
+        <p>Hands-on development of real-world applications.</p>
+        <div class="badges">
+            <span>Management Systems</span><span>E-Commerce</span><span>OpenAI</span><span>AI Chatbots</span>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- COMMUNICATION -->
+<div class="section">
+<h2 data-aos="fade-right">Communication & Soft Skills</h2>
+
+<div class="grid">
+    <div class="card" data-aos="fade-up">
+        <h3>English Communication</h3>
+        <p>Certified training in professional English communication, presentation skills, and workplace interaction.</p>
+        <div class="badges">
+            <span>Speaking</span><span>Presentation</span><span>Professional Communication</span>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- SPORTS & ACTIVITIES -->
+<div class="section">
+<h2 data-aos="fade-right">Sports & Extra-Curricular Activities</h2>
+
+<div class="grid">
+    <div class="card" data-aos="fade-up">
+        <h3>Sports Certifications</h3>
+        <p>Participation and achievement certificates in sports, reflecting teamwork, discipline, and leadership.</p>
+        <div class="badges">
+            <span>Teamwork</span><span>Discipline</span><span>Leadership</span>
+        </div>
+    </div>
+
+    <div class="card" data-aos="fade-up">
+        <h3>Other Activities</h3>
+        <p>Certificates from additional academic and non-academic activities contributing to overall growth.</p>
+        <div class="badges">
+            <span>Activities</span><span>Participation</span>
+        </div>
+    </div>
+</div>
+</div>
+
+<a href="{% url 'index' %}" class="back-btn">← Back to Home</a>
+
+</div>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+AOS.init({ once:true, duration:900 });
+</script>
+
+</body>
+</html>
