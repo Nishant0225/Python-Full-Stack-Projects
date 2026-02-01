@@ -1,334 +1,335 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <title>Nishant's Portfolio</title>
-</head>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
-*{
-    padding: 0;
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    box-sizing: border-box;
-}
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
-html{
-    overflow-x: hidden;
-}
-
-body{
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    background: linear-gradient(to right, #020617, #020f2f);
-    color: #e5e7eb;
-}
-
-/* ================= NAVBAR ================= */
-
-nav{
-    width: 100%;
-    height: 10vh;
-    position: sticky;
-}
-
-.nav-container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.logo{
-    font-size: 2rem;
-    font-weight: bolder;
-    color: #f9fafb;
-}
-
-.logo span{
-    color: #3b82f6;
-    text-shadow: 0 0 12px rgba(59,130,246,0.7);
-}
-
-.hamburg, .cancel{
-    cursor: pointer;
-    position: absolute;
-    right: 15px;
-    top: 10px;
-    color: #f9fafb;
-    font-size: 2rem;
-    display: none;
-}
-
-.nav-container .links{
-    display: flex;
-    gap: 3rem;
-    align-items: center;
-}
-
-.nav-container .links a{
-    position: relative;
-    font-size: 1.1rem;
-    color: #e5e7eb;
-    text-decoration: none;
-    font-weight: 500;
-    transition: 0.3s linear;
-}
-
-.nav-container .links a::before{
-    position: absolute;
-    content: "";
-    bottom: -3px;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background-color: #3b82f6;
-    transition: 0.2s linear;
-}
-
-.nav-container .links a:hover::before{
-    width: 100%;
-}
-
-.nav-container .links a:hover{
-    color: #3b82f6;
-}
-
-.nav-container .contact-btn{
-    background-color: transparent;
-    padding: 6px 22px;
-    border-radius: 20px;
-    border: 2px solid #3b82f6;
-    transition: 0.2s linear;
-}
-
-.nav-container .contact-btn a{
-    color: #f9fafb;
-}
-
-.nav-container .contact-btn:hover,
-.nav-container .contact-btn:hover a{
-    background-color: #3b82f6;
-    color: #020617;
-}
-
-/* ================= DROPDOWN ================= */
-
-.dropdown{
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    transform: translateY(-500px);
-    width: 100%;
-    height: auto;
-    backdrop-filter: blur(10px);
-    background: rgba(2,6,23,0.9);
-    box-shadow: 0 0 30px rgba(0,0,0,0.7);
-    transition: 0.25s ease;
-}
-
-.dropdown .links a{
-    color: #f9fafb;
-    display: flex;
-    text-decoration: none;
-    justify-content: center;
-    padding: 16px 0;
-    transition: 0.2s linear;
-}
-
-.dropdown .links a:hover{
-    background-color: #3b82f6;
-    color: #020617;
-}
-
-/* ================= HERO ================= */
-
-section{
-    width: 100%;
-    height: 90vh;
-}
-
-.main-container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.main-container .image{
-    z-index: -1;
-    width: 30%;
-}
-
-.main-container .image img{
-    width: 100%;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
-}
-
-.main-container .content{
-    width: 40%;
-    min-height: 100px;
-}
-
-.content h1{
-    font-size: clamp(1rem, 2rem + 5vw, 3rem);
-    color: #f9fafb;
-}
-
-.content h1 span{
-    color: #3b82f6;
-    text-shadow: 0 0 12px rgba(59,130,246,0.7);
-}
-
-.content .typewriter{
-    font-weight: 600;
-    font-size: clamp(1rem, 1rem + 5vw, 2rem);
-    color: #e5e7eb;
-}
-
-.content .typewriter span{
-    color: #3b82f6;
-    font-size: 2.5rem;
-    text-shadow: 0 0 8px rgba(59,130,246,0.6);
-    position: relative;
-}
-
-.typewriter span::before{
-    content: "Developer";
-    animation: words 15s infinite;
-}
-
-.typewriter span::after{
-    content: "";
-    position: absolute;
-    width: calc(100% + 8px);
-    height: 100%;
-    border-left: 3px solid #f9fafb;
-    animation: cursor 0.6s linear infinite;
-}
-
-@keyframes cursor{
-    to{
-        border-left: 3px solid #3b82f6;
+    *{
+        padding: 0;
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        box-sizing: border-box;
     }
-}
 
-@keyframes words{
-    0%,33%{ content: "Developer"; }
-    34%,66%{ content: "Designer"; }
-    67%,100%{ content: "Programmer"; }
-}
+    html{
+        overflow-x: hidden;
+    }
 
-.content p{
-    font-size: clamp(0.4rem, 0.2rem + 9vw, 1rem);
-    margin: 12px 0;
-    color: #cbd5f5;
-}
-
-/* ================= SOCIAL ================= */
-
-.social-links i{
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 3rem;
-    height: 3rem;
-    background-color: transparent;
-    border: 0.2rem solid #3b82f6;
-    border-radius: 50%;
-    color: #3b82f6;
-    margin: 5px 10px;
-    font-size: 1.5rem;
-    transition: 0.25s ease;
-}
-
-.social-links i:hover{
-    scale: 1.25;
-    color: #020617;
-    background-color: #3b82f6;
-    filter: drop-shadow(0 0 15px rgba(59,130,246,0.8));
-}
-
-/* ================= BUTTON ================= */
-
-.content button{
-    width: 40%;
-    height: 6vh;
-    margin: 30px;
-    background-color: #3b82f6;
-    color: #020617;
-    border: none;
-    font-size: 100%;
-    font-weight: 700;
-    border-radius: 6px;
-    transition: 0.25s ease;
-}
-
-.content button:hover{
-    scale: 1.1;
-    color: #3b82f6;
-    border: 2px solid #3b82f6;
-    background-color: transparent;
-    box-shadow: 0 0 40px rgba(59,130,246,0.7);
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media (max-width:884px){
     body{
-        overflow-y: visible;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: linear-gradient(to right, #020617, #020f2f);
+        color: #e5e7eb;
     }
 
-    nav .logo{
-        position: absolute;
-        top: 16px;
-        left: 15px;
-        font-size: 1.5rem;
+    /* ================= NAVBAR ================= */
+
+    nav{
+        width: 100%;
+        height: 10vh;
+        position: sticky;
     }
 
-    .main-container{
-        flex-direction: column;
+    .nav-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
     }
 
-    .nav-container .links{
-        display: none;
-    }
-
-    .hamburg,.cancel{
-        display: block;
-    }
-
-    .main-container .content{
-        width: 80%;
-    }
-
-    .social-links i{
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-
-    .cancel{
+    .logo{
+        font-size: 2rem;
+        font-weight: bolder;
         color: #f9fafb;
     }
 
-    .main-container .image{
-        width: 80%;
+    .logo span{
+        color: #3b82f6;
+        text-shadow: 0 0 12px rgba(59,130,246,0.7);
     }
-}
 
-.cvbtn{
-    color: inherit;
-    text-decoration: none;
-}
+    .hamburg, .cancel{
+        cursor: pointer;
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        color: #f9fafb;
+        font-size: 2rem;
+        display: none;
+    }
 
-</style>
+    .nav-container .links{
+        display: flex;
+        gap: 3rem;
+        align-items: center;
+    }
+
+    .nav-container .links a{
+        position: relative;
+        font-size: 1.1rem;
+        color: #e5e7eb;
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s linear;
+    }
+
+    .nav-container .links a::before{
+        position: absolute;
+        content: "";
+        bottom: -3px;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background-color: #3b82f6;
+        transition: 0.2s linear;
+    }
+
+    .nav-container .links a:hover::before{
+        width: 100%;
+    }
+
+    .nav-container .links a:hover{
+        color: #3b82f6;
+    }
+
+    .nav-container .contact-btn{
+        background-color: transparent;
+        padding: 6px 22px;
+        border-radius: 20px;
+        border: 2px solid #3b82f6;
+        transition: 0.2s linear;
+    }
+
+    .nav-container .contact-btn a{
+        color: #f9fafb;
+    }
+
+    .nav-container .contact-btn:hover,
+    .nav-container .contact-btn:hover a{
+        background-color: #3b82f6;
+        color: #020617;
+    }
+
+    /* ================= DROPDOWN ================= */
+
+    .dropdown{
+        z-index: 100;
+        position: absolute;
+        top: 0;
+        transform: translateY(-500px);
+        width: 100%;
+        height: auto;
+        backdrop-filter: blur(10px);
+        background: rgba(2,6,23,0.9);
+        box-shadow: 0 0 30px rgba(0,0,0,0.7);
+        transition: 0.25s ease;
+    }
+
+    .dropdown .links a{
+        color: #f9fafb;
+        display: flex;
+        text-decoration: none;
+        justify-content: center;
+        padding: 16px 0;
+        transition: 0.2s linear;
+    }
+
+    .dropdown .links a:hover{
+        background-color: #3b82f6;
+        color: #020617;
+    }
+
+    /* ================= HERO ================= */
+
+    section{
+        width: 100%;
+        height: 90vh;
+    }
+
+    .main-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .main-container .image{
+        z-index: -1;
+        width: 30%;
+    }
+
+    .main-container .image img{
+        width: 100%;
+        filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+    }
+
+    .main-container .content{
+        width: 40%;
+        min-height: 100px;
+    }
+
+    .content h1{
+        font-size: clamp(1rem, 2rem + 5vw, 3rem);
+        color: #f9fafb;
+    }
+
+    .content h1 span{
+        color: #3b82f6;
+        text-shadow: 0 0 12px rgba(59,130,246,0.7);
+    }
+
+    .content .typewriter{
+        font-weight: 600;
+        font-size: clamp(1rem, 1rem + 5vw, 2rem);
+        color: #e5e7eb;
+    }
+
+    .content .typewriter span{
+        color: #3b82f6;
+        font-size: 2.5rem;
+        text-shadow: 0 0 8px rgba(59,130,246,0.6);
+        position: relative;
+    }
+
+    .typewriter span::before{
+        content: "Developer";
+        animation: words 15s infinite;
+    }
+
+    .typewriter span::after{
+        content: "";
+        position: absolute;
+        width: calc(100% + 8px);
+        height: 100%;
+        border-left: 3px solid #f9fafb;
+        animation: cursor 0.6s linear infinite;
+    }
+
+    @keyframes cursor{
+        to{
+            border-left: 3px solid #3b82f6;
+        }
+    }
+
+    @keyframes words{
+        0%,33%{ content: "Developer"; }
+        34%,66%{ content: "Designer"; }
+        67%,100%{ content: "Programmer"; }
+    }
+
+    .content p{
+        font-size: clamp(0.4rem, 0.2rem + 9vw, 1rem);
+        margin: 12px 0;
+        color: #cbd5f5;
+    }
+
+    /* ================= SOCIAL ================= */
+
+    .social-links i{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 3rem;
+        height: 3rem;
+        background-color: transparent;
+        border: 0.2rem solid #3b82f6;
+        border-radius: 50%;
+        color: #3b82f6;
+        margin: 5px 10px;
+        font-size: 1.5rem;
+        transition: 0.25s ease;
+    }
+
+    .social-links i:hover{
+        scale: 1.25;
+        color: #020617;
+        background-color: #3b82f6;
+        filter: drop-shadow(0 0 15px rgba(59,130,246,0.8));
+    }
+
+    /* ================= BUTTON ================= */
+
+    .content button{
+        width: 40%;
+        height: 6vh;
+        margin: 30px;
+        background-color: #3b82f6;
+        color: #020617;
+        border: none;
+        font-size: 100%;
+        font-weight: 700;
+        border-radius: 6px;
+        transition: 0.25s ease;
+    }
+
+    .content button:hover{
+        scale: 1.1;
+        color: #3b82f6;
+        border: 2px solid #3b82f6;
+        background-color: transparent;
+        box-shadow: 0 0 40px rgba(59,130,246,0.7);
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width:884px){
+        body{
+            overflow-y: visible;
+        }
+
+        nav .logo{
+            position: absolute;
+            top: 16px;
+            left: 15px;
+            font-size: 1.5rem;
+        }
+
+        .main-container{
+            flex-direction: column;
+        }
+
+        .nav-container .links{
+            display: none;
+        }
+
+        .hamburg,.cancel{
+            display: block;
+        }
+
+        .main-container .content{
+            width: 80%;
+        }
+
+        .social-links i{
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        .cancel{
+            color: #f9fafb;
+        }
+
+        .main-container .image{
+            width: 80%;
+        }
+    }
+
+    .cvbtn{
+        color: inherit;
+        text-decoration: none;
+    }
+    </style>
+</head>
+
 <body>
     <nav>
         <div class="nav-container">
@@ -357,48 +358,47 @@ section{
             </div>
         </div>
     </nav>
-        <section>
-            <div class="main-container">
-                <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
-<img src="{% static 'photo.png' %}" alt="Nishant" height="550">
 
-                </div>
-                <div class="content">
-                    <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">Hey I'm <span>Nishant</span></h1>
-                    <div class="typewriter" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900">I'm a <span></span></div>
-                    <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">👋🏻Greetings...!! I'm Nishant Kadu a passionate individual with keen interest in technology.💡
+    <section>
+        <div class="main-container">
+            <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
+                <img src="img-removebg-preview.png" alt="" height="550px">
+            </div>
+            <div class="content">
+                <h1 data-aos="fade-left" data-aos-duration="1000" data-aos-delay="800">Hey I'm <span>Nishant</span></h1>
+                <div class="typewriter" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="900">I'm a <span></span></div>
+                <p data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">👋🏻Greetings...!! I'm Nishant Kadu a passionate individual with keen interest in technology.💡
 Eagerly preparing to step into professional world.💼
 
 A dedicated B.E IT student.🎓 Commited to tackle new problems ahead and pushing boundaries.🚀
 Exploring new opportunities for growth and learning.
 Let's connect and embark on this journey together…🤝</p>
-                    <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
-                        <a href="https://github.com/Nishant0225" ><i class="fa-brands fa-github"></i></a>
-                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="https://www.linkedin.com/in/nishant-kadu-109843290/?originalSubdomain=in"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://www.hackerrank.com/profile/nishantkadu7020"><i class="fab fa-hackerrank"></i></a>
-                    </div>
-                    <div class="btn" data-aos="zoom-out-left" data-aos-duration="1000" data-aos-delay="1300">
-                        <button>
-                            <a class="cvbtn" href="resume.png">Download CV</a>
-                        </button >
-                    </div>
+
+                <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
+                    <a href="https://github.com/Nishant0225"><i class="fa-brands fa-github"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/in/nishant-kadu-109843290/?originalSubdomain=in"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.hackerrank.com/profile/nishantkadu7020"><i class="fab fa-hackerrank"></i></a>
+                </div>
+
+                <div class="btn" data-aos="zoom-out-left" data-aos-duration="1000" data-aos-delay="1300">
+                    <button>
+                        <a class="cvbtn" href="resume.png">Download CV</a>
+                    </button>
                 </div>
             </div>
-        </section>
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        <script>
-          AOS.init({offset:0});
-        </script>
-        <script>
-            function hamburg(){
-                const navbar = document.querySelector(".dropdown")
-                navbar.style.transform = "translateY(0px)"
-            }
-            function cancel(){
-                const navbar = document.querySelector(".dropdown")
-                navbar.style.transform = "translateY(-500px)"
-            }
-        </script>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({offset:0});
+        function hamburg(){
+            document.querySelector(".dropdown").style.transform = "translateY(0px)";
+        }
+        function cancel(){
+            document.querySelector(".dropdown").style.transform = "translateY(-500px)";
+        }
+    </script>
 </body>
 </html>
