@@ -53,7 +53,7 @@ h1 span{
     background:rgba(255,255,255,0.04);
     border:1px solid rgba(79,140,255,0.25);
     border-radius:14px;
-    padding:22px;
+    padding:18px;
     transition:0.35s ease;
 }
 
@@ -63,24 +63,54 @@ h1 span{
 }
 
 .card h3{
-    margin:0 0 10px;
+    margin:12px 0 8px;
     color:#f9fafb;
 }
 
 .card p{
     color:#cbd5f5;
-    font-size:0.95rem;
+    font-size:0.9rem;
     line-height:1.6;
 }
 
-.badges span{
+/* Certificate Thumbnail */
+.pdf-preview{
+    width:100%;
+    height:180px;
+    border-radius:10px;
+    border:1px solid rgba(79,140,255,0.25);
+    overflow:hidden;
+    background:#020617;
+}
+
+.pdf-preview img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:10px;
+    transition:0.35s ease;
+}
+
+.card:hover .pdf-preview img{
+    transform:scale(1.05);
+}
+
+/* View Button */
+.view-btn{
     display:inline-block;
-    margin:6px 6px 0 0;
-    padding:6px 14px;
-    border-radius:20px;
-    background:rgba(79,140,255,0.15);
+    margin-top:12px;
+    padding:8px 18px;
+    border:2px solid #4f8cff;
     color:#4f8cff;
-    font-size:0.8rem;
+    text-decoration:none;
+    border-radius:20px;
+    font-size:0.85rem;
+    transition:0.3s;
+}
+
+.view-btn:hover{
+    background:#4f8cff;
+    color:#020617;
 }
 
 .back-btn{
@@ -110,41 +140,20 @@ A collection of my technical certifications, communication skills, and achieveme
 and extra-curricular activities that reflect my continuous learning and all-round development.
 </p>
 
-<!-- TECHNICAL CERTIFICATIONS -->
+<!-- TECHNICAL -->
 <div class="section">
 <h2 data-aos="fade-right">Technical Certifications</h2>
 
 <div class="grid">
     <div class="card" data-aos="zoom-in">
-        <h3>Full Stack Python Development</h3>
-        <p>Comprehensive certification covering backend, frontend, databases, APIs, and real-world project development.</p>
-        <div class="badges">
-            <span>Python</span><span>Flask</span><span>Django</span><span>REST API</span><span>OpenAI</span>
+        <div class="pdf-preview">
+            <img src="{% static 'certificates/thumbs/apti.png' %}" alt="Aptitude Certificate">
         </div>
-    </div>
-
-    <div class="card" data-aos="zoom-in">
-        <h3>Frontend Development</h3>
-        <p>Strong foundation in building responsive and modern user interfaces.</p>
-        <div class="badges">
-            <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Bootstrap</span>
-        </div>
-    </div>
-
-    <div class="card" data-aos="zoom-in">
-        <h3>Database Technologies</h3>
-        <p>Experience in designing and managing relational and NoSQL databases.</p>
-        <div class="badges">
-            <span>MySQL</span><span>MongoDB</span>
-        </div>
-    </div>
-
-    <div class="card" data-aos="zoom-in">
-        <h3>Project-Based Learning</h3>
-        <p>Hands-on development of real-world applications.</p>
-        <div class="badges">
-            <span>Management Systems</span><span>E-Commerce</span><span>OpenAI</span><span>AI Chatbots</span>
-        </div>
+        <h3>Aptitude Certification</h3>
+        <p>Certified aptitude skills supporting problem-solving and logical reasoning.</p>
+        <a class="view-btn"
+           href="{% static 'certificates/apti certificate.pdf' %}"
+           target="_blank">View Certificate</a>
     </div>
 </div>
 </div>
@@ -154,36 +163,40 @@ and extra-curricular activities that reflect my continuous learning and all-roun
 <h2 data-aos="fade-right">Communication & Soft Skills</h2>
 
 <div class="grid">
-    <div class="card" data-aos="fade-up">
-        <h3>English Communication</h3>
-        <p>Certified training in professional English communication, presentation skills, and workplace interaction.</p>
-        <div class="badges">
-            <span>Speaking</span><span>Presentation</span><span>Professional Communication</span>
-        </div>
-    </div>
-</div>
-</div>
 
-<!-- SPORTS & ACTIVITIES -->
-<div class="section">
-<h2 data-aos="fade-right">Sports & Extra-Curricular Activities</h2>
-
-<div class="grid">
     <div class="card" data-aos="fade-up">
-        <h3>Sports Certifications</h3>
-        <p>Participation and achievement certificates in sports, reflecting teamwork, discipline, and leadership.</p>
-        <div class="badges">
-            <span>Teamwork</span><span>Discipline</span><span>Leadership</span>
+        <div class="pdf-preview">
+            <img src="{% static 'certificates/thumbs/communication.png' %}" alt="Communication Skills">
         </div>
+        <h3>Communication Skills</h3>
+        <p>Professional English communication and workplace interaction.</p>
+        <a class="view-btn"
+           href="{% static 'certificates/Nishant communication skills.pdf' %}"
+           target="_blank">View Certificate</a>
     </div>
 
     <div class="card" data-aos="fade-up">
-        <h3>Other Activities</h3>
-        <p>Certificates from additional academic and non-academic activities contributing to overall growth.</p>
-        <div class="badges">
-            <span>Activities</span><span>Participation</span>
+        <div class="pdf-preview">
+            <img src="{% static 'certificates/thumbs/presentation.png' %}" alt="Presentation Skills">
         </div>
+        <h3>Presentation Skills</h3>
+        <p>Effective presentation delivery and public speaking skills.</p>
+        <a class="view-btn"
+           href="{% static 'certificates/Nishant Presentation Skills.pdf' %}"
+           target="_blank">View Certificate</a>
     </div>
+
+    <div class="card" data-aos="fade-up">
+        <div class="pdf-preview">
+            <img src="{% static 'certificates/thumbs/softskills.png' %}" alt="Soft Skills">
+        </div>
+        <h3>Soft Skills</h3>
+        <p>Interpersonal skills, teamwork, and professional behavior.</p>
+        <a class="view-btn"
+           href="{% static 'certificates/Nishant Soft Skills.pdf' %}"
+           target="_blank">View Certificate</a>
+    </div>
+
 </div>
 </div>
 
