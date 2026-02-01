@@ -405,5 +405,26 @@ Let's connect and embark on this journey together…🤝</p>
             document.querySelector(".dropdown").style.transform = "translateY(-500px)";
         }
     </script>
+    <script>
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener("touchstart", function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener("touchend", function(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    if (touchStartX - touchEndX > 80) {
+        // Swipe LEFT
+        window.location.href = "/about/";
+    }
+}
+</script>
+
 </body>
 </html>
