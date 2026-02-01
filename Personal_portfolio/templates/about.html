@@ -1,2 +1,40 @@
-<h1>About Page</h1>
-<p></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+</head>
+<body>
+    <h1>Hey Its Nishant</h1>
+
+<script>
+let touchStartX = 0;
+let touchEndX = 0;
+
+document.addEventListener("touchstart", function (e) {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+document.addEventListener("touchend", function (e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const swipeDistance = 80; // minimum swipe distance
+
+    // Swipe LEFT → About
+    if (touchStartX - touchEndX > swipeDistance) {
+        window.location.href = "{% url 'about' %}";
+    }
+
+    // Swipe RIGHT → Home
+    if (touchEndX - touchStartX > swipeDistance) {
+        window.location.href = "{% url 'index' %}";
+    }
+}
+</script>
+
+</body>
+</html>

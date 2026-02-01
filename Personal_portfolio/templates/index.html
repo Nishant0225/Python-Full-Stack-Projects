@@ -405,25 +405,34 @@ Let's connect and embark on this journey together…🤝</p>
             document.querySelector(".dropdown").style.transform = "translateY(-500px)";
         }
     </script>
-    <script>
-let touchStartX = 0;
-let touchEndX = 0;
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener("touchstart", function(e) {
-    touchStartX = e.changedTouches[0].screenX;
-});
+    const swipeArea = document.querySelector("section");
+    let startX = 0;
+    let endX = 0;
 
-document.addEventListener("touchend", function(e) {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
+    if (!swipeArea) return;
 
-function handleSwipe() {
-    if (touchStartX - touchEndX > 80) {
-        // Swipe LEFT
-        window.location.href = "/about/";
+    swipeArea.addEventListener("touchstart", function (e) {
+        startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    swipeArea.addEventListener("touchend", function (e) {
+        endX = e.changedTouches[0].clientX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        const threshold = 70;
+
+        // Swipe LEFT → About
+        if (startX - endX > threshold) {
+            window.location.href = "{% url 'about' %}";
+        }
     }
-}
+
+});
 </script>
 
 </body>
