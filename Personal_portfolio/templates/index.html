@@ -353,8 +353,8 @@
         </div>
         <div class="dropdown">
             <div class="links">
-                <a href="">Home</a>
-                <a href="">About</a>
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'about' %}">About</a>
                 <a href="">Skills</a>
                 <a href="">Services</a>
                 <a href="">Blogs</a>
@@ -405,35 +405,28 @@ Let's connect and embark on this journey together…🤝</p>
             document.querySelector(".dropdown").style.transform = "translateY(-500px)";
         }
     </script>
-<script>
+    <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    const swipeArea = document.querySelector("section");
     let startX = 0;
-    let endX = 0;
+    const threshold = 60; // swipe sensitivity
 
-    if (!swipeArea) return;
+    document.body.addEventListener("pointerdown", function (e) {
+        startX = e.clientX;
+    });
 
-    swipeArea.addEventListener("touchstart", function (e) {
-        startX = e.touches[0].clientX;
-    }, { passive: true });
+    document.body.addEventListener("pointerup", function (e) {
+        const endX = e.clientX;
 
-    swipeArea.addEventListener("touchend", function (e) {
-        endX = e.changedTouches[0].clientX;
-        handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-        const threshold = 70;
-
-        // Swipe LEFT → About
+        // Swipe LEFT → About page
         if (startX - endX > threshold) {
             window.location.href = "{% url 'about' %}";
         }
-    }
+    });
 
 });
 </script>
+
 
 </body>
 </html>
