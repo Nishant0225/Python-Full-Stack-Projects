@@ -406,26 +406,40 @@ Let's connect and embark on this journey together…🤝</p>
         }
     </script>
     <script>
-document.addEventListener("DOMContentLoaded", function () {
+(function () {
+    let startX = null;
 
-    let startX = 0;
-    const threshold = 60; // swipe sensitivity
+    function start(e) {
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
 
-    document.body.addEventListener("pointerdown", function (e) {
-        startX = e.clientX;
-    });
+    function end(e) {
+        if (startX === null) return;
 
-    document.body.addEventListener("pointerup", function (e) {
-        const endX = e.clientX;
+        const endX = e.changedTouches
+            ? e.changedTouches[0].clientX
+            : e.clientX;
 
-        // Swipe LEFT → About page
-        if (startX - endX > threshold) {
+        const diff = startX - endX;
+
+        // Swipe LEFT → About
+        if (diff > 60) {
             window.location.href = "{% url 'about' %}";
         }
-    });
 
-});
+        startX = null;
+    }
+
+    // Touch (mobile)
+    document.addEventListener("touchstart", start, { passive: true });
+    document.addEventListener("touchend", end, { passive: true });
+
+    // Mouse (desktop testing)
+    document.addEventListener("mousedown", start);
+    document.addEventListener("mouseup", end);
+})();
 </script>
+
 
 
 </body>
