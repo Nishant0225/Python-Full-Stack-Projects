@@ -332,10 +332,31 @@
         color: inherit;
         text-decoration: none;
     }
+    /* ================= CARD SWIPE STRUCTURE ================= */
+
+.page-card{
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(circle at top left, #0a122a, #020617 70%);
+    transition: transform 0.45s ease, opacity 0.45s ease;
+    will-change: transform;
+}
+
+.page-card.swipe-left{
+    transform: translateX(-100%);
+    opacity: 0.7;
+}
+
+.page-card.swipe-right{
+    transform: translateX(100%);
+    opacity: 0.7;
+}
+
     </style>
 </head>
 
 <body>
+    <div class="page-card">
     <nav>
         <div class="nav-container">
             <div class="logo" data-aos="zoom-in" data-aos-duration="1000">
@@ -393,6 +414,7 @@ Let's connect and embark on this journey together…🤝</p>
                 </div>
             </div>
         </div>
+        
     </section>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -439,8 +461,52 @@ Let's connect and embark on this journey together…🤝</p>
     document.addEventListener("mouseup", end);
 })();
 </script>
+<script>
+(function () {
+    let startX = null;
+    const card = document.querySelector(".page-card");
 
+    function start(e) {
+        startX = e.touches ? e.touches[0].clientX : e.clientX;
+    }
 
+    function end(e) {
+        if (startX === null) return;
+
+        const endX = e.changedTouches
+            ? e.changedTouches[0].clientX
+            : e.clientX;
+
+        const diff = startX - endX;
+
+        // Swipe LEFT → About
+        if (diff > 80) {
+            card.classList.add("swipe-left");
+            setTimeout(() => {
+                window.location.href = "{% url 'about' %}";
+            }, 400);
+        }
+
+        // Swipe RIGHT → Home (optional, for about page)
+        if (diff < -80) {
+            card.classList.add("swipe-right");
+            setTimeout(() => {
+                window.location.href = "{% url 'index' %}";
+            }, 400);
+        }
+
+        startX = null;
+    }
+
+    document.addEventListener("touchstart", start, { passive: true });
+    document.addEventListener("touchend", end, { passive: true });
+
+    document.addEventListener("mousedown", start);
+    document.addEventListener("mouseup", end);
+})();
+</script>
+
+</div>
 
 </body>
 </html>
