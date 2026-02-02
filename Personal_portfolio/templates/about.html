@@ -88,6 +88,73 @@
             background:#4f8cff;
             color:#020617;
         }
+        /* ================= NEXT PAGE BUTTON (PREMIUM) ================= */
+
+.next-page-btn{
+    position: fixed;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 22px;
+    border-radius: 50px;
+
+    background: rgba(79,140,255,0.15);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    border: 1px solid rgba(79,140,255,0.45);
+    color: #e5e7eb;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    cursor: pointer;
+    z-index: 999;
+
+    box-shadow:
+        0 0 0 rgba(79,140,255,0),
+        inset 0 0 0 rgba(255,255,255,0);
+
+    transition: all 0.35s ease;
+}
+
+.next-page-btn i{
+    font-size: 0.95rem;
+    transition: transform 0.35s ease;
+}
+
+/* Hover */
+.next-page-btn:hover{
+    background: rgba(79,140,255,0.35);
+    box-shadow:
+        0 12px 35px rgba(79,140,255,0.45),
+        inset 0 0 12px rgba(255,255,255,0.15);
+    transform: translateY(-50%) scale(1.06);
+}
+
+.next-page-btn:hover i{
+    transform: translateX(6px);
+}
+
+/* Active (click) */
+.next-page-btn:active{
+    transform: translateY(-50%) scale(0.98);
+}
+
+/* Mobile */
+@media (max-width: 768px){
+    .next-page-btn{
+        right: 16px;
+        padding: 12px 18px;
+        font-size: 0.85rem;
+    }
+}
+
     </style>
 </head>
 
@@ -199,6 +266,22 @@
     <a href="{% url 'index' %}" class="back-btn">
         ← Back to Home
     </a>
+<button class="next-page-btn" onclick="goNextPage()">
+    About Me
+    <i class="fa-solid fa-arrow-right"></i>
+</button>
+<script>
+function goNextPage(){
+    const card = document.querySelector(".page-card");
+    if(!card) return;
+
+    card.classList.add("swipe-left");
+
+    setTimeout(() => {
+        window.location.href = "{% url 'about' %}";
+    }, 400);
+}
+</script>
 
 </div>
 </body>
