@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About | Nishant Kadu</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <style>
         body{
@@ -73,98 +73,15 @@
             margin-bottom:8px;
             color:#cbd5f5;
         }
-
-        .back-btn{
-            margin-top:60px;
-            display:inline-block;
-            padding:10px 24px;
-            border:2px solid #4f8cff;
-            color:#4f8cff;
-            text-decoration:none;
-            border-radius:30px;
-            transition:0.3s;
-        }
-
-        .back-btn:hover{
-            background:#4f8cff;
-            color:#020617;
-        }
-        /* ================= NEXT PAGE BUTTON (PREMIUM) ================= */
-
-.next-page-btn{
-    position: fixed;
-    right: 32px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    padding: 14px 22px;
-    border-radius: 50px;
-
-    background: rgba(79,140,255,0.15);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-
-    border: 1px solid rgba(79,140,255,0.45);
-    color: #e5e7eb;
-
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-
-    cursor: pointer;
-    z-index: 999;
-
-    box-shadow:
-        0 0 0 rgba(79,140,255,0),
-        inset 0 0 0 rgba(255,255,255,0);
-
-    transition: all 0.35s ease;
-}
-
-.next-page-btn i{
-    font-size: 0.95rem;
-    transition: transform 0.35s ease;
-}
-
-/* Hover */
-.next-page-btn:hover{
-    background: rgba(79,140,255,0.35);
-    box-shadow:
-        0 12px 35px rgba(79,140,255,0.45),
-        inset 0 0 12px rgba(255,255,255,0.15);
-    transform: translateY(-50%) scale(1.06);
-}
-
-.next-page-btn:hover i{
-    transform: translateX(6px);
-}
-
-/* Active (click) */
-.next-page-btn:active{
-    transform: translateY(-50%) scale(0.98);
-}
-
-/* Mobile */
-@media (max-width: 768px){
-    .next-page-btn{
-        right: 16px;
-        padding: 12px 18px;
-        font-size: 0.85rem;
-    }
-}
-
     </style>
 </head>
 
 <body>
 <div class="container">
 
-    <h1>About <span>Me</span></h1>
+    <h1 data-aos="fade-up">About <span>Me</span></h1>
 
-    <p>
+    <p data-aos="fade-up" data-aos-delay="100">
         I’m <strong>Nishant Madhusudan Kadu</strong>, a results-driven Web Developer specializing in
         building secure, responsive, and scalable web applications using
         <strong>Python, Django, Flask, JavaScript, HTML, and CSS</strong>.
@@ -172,15 +89,15 @@
         through clean and maintainable code.
     </p>
 
-    <p>
+    <p data-aos="fade-up" data-aos-delay="200">
         Currently pursuing a <strong>Bachelor of Engineering in Information Technology</strong>,
         I focus on full-stack development with hands-on experience in authentication systems,
         CRUD operations, database design, and deployment.
     </p>
 
-    <h2>Technical Skills</h2>
+    <h2 data-aos="fade-up">Technical Skills</h2>
     <div class="grid">
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
             <strong>Languages</strong>
             <ul>
                 <li>Python</li>
@@ -189,7 +106,7 @@
             </ul>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
             <strong>Frameworks</strong>
             <ul>
                 <li>Django</li>
@@ -197,7 +114,7 @@
             </ul>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
             <strong>Frontend</strong>
             <ul>
                 <li>HTML</li>
@@ -207,7 +124,7 @@
             </ul>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
             <strong>Databases & Tools</strong>
             <ul>
                 <li>SQLite</li>
@@ -218,10 +135,10 @@
         </div>
     </div>
 
-    <h2>Highlighted Projects</h2>
+    <h2 data-aos="fade-up">Highlighted Projects</h2>
     <div class="grid">
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
             <strong>Bank Management System (Flask)</strong>
             <p>
                 Secure banking web application featuring authentication, account management,
@@ -229,7 +146,7 @@
             </p>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
             <strong>E-Commerce Website (Django)</strong>
             <p>
                 Full-stack e-commerce platform with product listings, cart, checkout,
@@ -237,7 +154,7 @@
             </p>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
             <strong>iStoreX (Django)</strong>
             <p>
                 Online store with product CRUD operations, secure authentication,
@@ -245,7 +162,7 @@
             </p>
         </div>
 
-        <div class="card">
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
             <strong>SENSAI – Career Intelligence App</strong>
             <p>
                 AI-powered career guidance platform offering resume builder,
@@ -256,16 +173,16 @@
 
     </div>
 
-    <h2>Strengths</h2>
+    <h2 data-aos="fade-up">Strengths</h2>
     <ul>
-        <li>Strong problem-solving ability</li>
-        <li>Fast learner and adaptable</li>
-        <li>Clean code practices</li>
-        <li>Team collaboration mindset</li>
+        <li data-aos="fade-right" data-aos-delay="100">Strong problem-solving ability</li>
+        <li data-aos="fade-right" data-aos-delay="200">Fast learner and adaptable</li>
+        <li data-aos="fade-right" data-aos-delay="300">Clean code practices</li>
+        <li data-aos="fade-right" data-aos-delay="400">Team collaboration mindset</li>
     </ul>
 
-
 </div>
+
 <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
 AOS.init({
