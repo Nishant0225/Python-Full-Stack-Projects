@@ -22,12 +22,13 @@
         overflow-x: hidden;
     }
 
-    body{
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-        background: radial-gradient(circle at top left, #0a122a, #020617 70%);
-        color: #e5e7eb;
+body{
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    background: radial-gradient(circle at top left, #0a122a, #020617 70%);
+    color: #e5e7eb;
     }
 
     /* ================= NAVBAR ================= */
@@ -386,6 +387,59 @@
         font-size: 0.9rem;
     }
 }
+/* ================= SCROLL DOWN INDICATOR ================= */
+
+.scroll-indicator{
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.85;
+    animation: fadeIn 1.5s ease forwards;
+}
+
+.scroll-indicator span{
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: #cbd5f5;
+}
+
+.mouse{
+    width: 26px;
+    height: 44px;
+    border: 2px solid #4f8cff;
+    border-radius: 20px;
+    position: relative;
+}
+
+.mouse::before{
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    width: 4px;
+    height: 8px;
+    background: #4f8cff;
+    border-radius: 2px;
+    transform: translateX(-50%);
+    animation: scrollWheel 1.6s infinite;
+}
+
+@keyframes scrollWheel{
+    0%{ opacity: 0; transform: translate(-50%,0); }
+    30%{ opacity: 1; }
+    100%{ opacity: 0; transform: translate(-50%,12px); }
+}
+
+@keyframes fadeIn{
+    from{ opacity: 0; transform: translate(-50%,10px); }
+    to{ opacity: 1; transform: translate(-50%,0); }
+}
+
 
     </style>
 </head>
@@ -411,7 +465,7 @@
             <div class="links">
                 <a href="{% url 'index' %}">Home</a>
                 <a href="{% url 'about' %}">About</a>
-                <a href="{% url 'certifications' %}">Certificates</a>
+                <a href="/certifications/">Certificates</a>
                 <a href="">Services</a>
                 <a href="">Blogs</a>
                 <a href="">Contact Us</a>
@@ -449,12 +503,22 @@ Let's connect and embark on this journey together…🤝</p>
                 </div>
             </div>
         </div>
-        
+      <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="1200">
+    <div class="mouse"></div>
+    <span>SCROLL</span>
+</div>
+  
     </section>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({offset:0});
+        AOS.init({
+    offset: 120,
+    duration: 900,
+    easing: "ease-out-cubic",
+    once: false
+});
+
         function hamburg(){
             document.querySelector(".dropdown").style.transform = "translateY(0px)";
         }
