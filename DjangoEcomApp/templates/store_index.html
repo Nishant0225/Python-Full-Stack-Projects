@@ -2,24 +2,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>ShopNow |Shop Now </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="UTF-8" />
+<title>ShopNow | Luxury Store</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+/* ================= ROOT FEEL ================= */
+*{
+  scroll-behavior: smooth;
+}
+body{
+  background:
+    radial-gradient(circle at top, #eef2ff, #f8fafc 60%);
+}
+
+/* ================= GLASS ================= */
+.glass{
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+/* ================= NAV ================= */
+.nav-item{
+  position: relative;
+}
+.nav-item::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:2px;
+  background: linear-gradient(90deg,#2563eb,#9333ea);
+  transition:0.4s ease;
+}
+.nav-item:hover::after{
+  width:100%;
+}
+
+/* ================= HERO ================= */
+.hero-img{
+  transition: transform 6s ease;
+}
+.hero-img.active{
+  transform: scale(1.08);
+}
+
+/* ================= PRODUCT CARD ================= */
+.product-card{
+  transform-style: preserve-3d;
+  transition: all 0.6s cubic-bezier(.19,1,.22,1);
+  background:
+    linear-gradient(180deg,#ffffff,#f9fafb);
+}
+.product-card:hover{
+  transform: translateY(-18px) scale(1.03);
+  box-shadow:
+    0 40px 80px rgba(0,0,0,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.6);
+}
+
+/* Glow */
+.product-card::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  background: linear-gradient(120deg,#2563eb,#9333ea);
+  opacity:0;
+  z-index:-1;
+  filter: blur(20px);
+  transition:0.4s;
+}
+.product-card:hover::before{
+  opacity:0.35;
+}
+
+/* Image zoom */
+.product-img{
+  transition: transform 0.7s ease;
+}
+.product-card:hover .product-img{
+  transform: scale(1.15);
+}
+
+/* ================= BADGE ================= */
+.badge{
+  background: linear-gradient(135deg,#2563eb,#9333ea);
+  animation:pulse 2.2s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(99,102,241,.6)}
+  70%{box-shadow:0 0 0 14px rgba(99,102,241,0)}
+  100%{box-shadow:0 0 0 0 rgba(99,102,241,0)}
+}
+
+/* ================= BUTTON RIPPLE ================= */
+.btn{
+  position: relative;
+  overflow: hidden;
+}
+.btn::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(circle at center,
+    rgba(255,255,255,0.6), transparent 60%);
+  opacity:0;
+  transition:0.4s;
+}
+.btn:hover::after{
+  opacity:0.35;
+}
+
+/* ================= FADE IN ================= */
+.fade-up{
+  opacity:0;
+  transform: translateY(40px);
+  animation:fadeUp 1s ease forwards;
+}
+@keyframes fadeUp{
+  to{opacity:1; transform:none;}
+}
+</style>
 </head>
 
-<body class="bg-gray-100">
+<body>
 
 <!-- ================= NAVBAR ================= -->
-<header>
-  <div
-    id="navbar"
-    class="flex items-center justify-between px-8 py-4
-           bg-blue-600 text-white
-           shadow-md hover:shadow-xl
-           transition-shadow duration-300"
-  >
-    <div class="text-2xl font-bold flex items-center gap-2 hover:scale-105 transition">
+<header class="sticky top-0 z-50">
+  <div class="glass flex justify-between items-center px-12 py-4 shadow-xl">
+    <div class="text-2xl font-semibold flex gap-2 hover:scale-105 transition">
       🛒 <span>ShopNow</span>
     </div>
 
@@ -35,21 +151,15 @@
       {% endfor %}
 
       {% if username %}
-        <li class="nav-item">Hello, {{ username }}</li>
-
-        <li class="btn">
+        <li class="text-gray-700">Hello, {{ username }}</li>
+        <li class="btn px-4 py-2 rounded-full bg-blue-600 text-white hover:scale-110 transition">
           <a href="{% url 'displaycart' %}">🛒</a>
         </li>
-
-        <li class="btn">
-          <a href="{% url 'orderhistory' %}">📃 Orders</a>
-        </li>
-
-        <li class="btn">
+        <li class="btn px-4 py-2 rounded-full bg-gray-900 text-white hover:scale-110 transition">
           <a href="{% url 'storelogout' %}">Logout</a>
         </li>
       {% else %}
-        <li class="btn">
+        <li class="btn px-5 py-2 rounded-full bg-blue-600 text-white hover:scale-110 transition">
           <a href="{% url 'storelogin' %}">Login</a>
         </li>
       {% endif %}
@@ -57,143 +167,91 @@
   </div>
 </header>
 
-<!-- ================= CAROUSEL ================= -->
-<section class="max-w-6xl mx-auto mt-10 relative">
-  <div class="overflow-hidden rounded-xl shadow-lg h-[400px]">
-    <div id="carousel" class="flex transition-transform duration-500">
-      <img src="{% static 'images/b1.jpg' %}" class="w-full h-[400px] object-cover flex-shrink-0">
-      <img src="{% static 'images/b2.jpg' %}" class="w-full h-[400px] object-cover flex-shrink-0">
-      <img src="{% static 'images/b3.webp' %}" class="w-full h-[400px] object-cover flex-shrink-0">
+<!-- ================= HERO ================= -->
+<section class="max-w-6xl mx-auto mt-14 relative fade-up">
+  <div class="overflow-hidden rounded-[2.5rem] shadow-[0_40px_90px_rgba(0,0,0,.25)] h-[420px]">
+    <div id="carousel" class="flex transition-transform duration-[1200ms] ease-[cubic-bezier(.19,1,.22,1)]">
+      <img src="{% static 'images/b1.jpg' %}" class="hero-img w-full h-[420px] object-cover flex-shrink-0">
+      <img src="{% static 'images/b2.jpg' %}" class="hero-img w-full h-[420px] object-cover flex-shrink-0">
+      <img src="{% static 'images/b3.webp' %}" class="hero-img w-full h-[420px] object-cover flex-shrink-0">
     </div>
   </div>
-
-  <button onclick="prevSlide()" class="carousel-btn left-4">⬅</button>
-  <button onclick="nextSlide()" class="carousel-btn right-4">➡</button>
 </section>
 
-<!-- ================= LATEST PRODUCTS ================= -->
-<section class="max-w-7xl mx-auto mt-20 px-6">
+<!-- ================= PRODUCTS ================= -->
+<section class="max-w-7xl mx-auto mt-28 px-6">
 
-  <div class="text-center mb-14">
-    <h1 class="text-3xl md:text-4xl font-bold text-gray-800">
-      Latest Launched Products
+  <div class="text-center mb-20 fade-up">
+    <h1 class="text-5xl font-bold text-gray-900 tracking-tight">
+      Latest Products
     </h1>
-    <p class="text-gray-500 mt-2">Fresh arrivals curated just for you</p>
-    <div class="w-28 h-1 bg-blue-600 mx-auto mt-4 rounded-full"></div>
+    <p class="text-gray-500 mt-4 text-lg">
+      Crafted with precision. Designed for delight.
+    </p>
+    <div class="w-40 h-[3px] bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-6 rounded-full"></div>
   </div>
 
-  <!-- PRODUCT GRID -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
 
     {% for item in products %}
-    <div class="bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition">
+    <div class="product-card relative rounded-[2rem] overflow-hidden fade-up">
 
-      <!-- IMAGE -->
-      <div class="relative overflow-hidden rounded-t-2xl">
-        <img
-          src="{{ item.image.url }}"
-          alt="{{ item.name }}"
-          class="w-full h-56 object-cover hover:scale-110 transition duration-500"
-        >
-        <span class="badge">NEW</span>
+      <div class="relative overflow-hidden">
+        <img src="{{ item.image.url }}" class="product-img w-full h-64 object-cover">
+        <span class="badge absolute top-4 left-4 text-white text-xs px-4 py-1 rounded-full">
+          NEW
+        </span>
       </div>
 
-      <!-- CONTENT -->
-      <div class="p-5">
-        <h2 class="text-lg font-semibold text-gray-800 truncate">
+      <div class="p-6">
+        <h2 class="text-lg font-semibold text-gray-900 truncate">
           {{ item.name }}
         </h2>
+        <p class="text-sm text-gray-500">{{ item.category }}</p>
 
-        <p class="text-sm text-gray-500 mb-2">
-          {{ item.category }}
-        </p>
-
-        <span class="text-xl font-bold text-blue-600 block mb-4">
+        <span class="block text-2xl font-bold text-blue-600 mt-4 mb-6">
           ₹ {{ item.price }}
         </span>
 
-        <!-- BUTTONS -->
         <div class="flex gap-3">
-
-          <!-- ADD TO CART -->
           <a href="{% url 'addcart' item.id %}"
-             class="w-1/2 text-center bg-blue-600 text-white py-2 rounded-lg
-                    hover:bg-blue-700 transition">
-            Add to Cart
+             class="btn w-1/2 text-center bg-blue-600 text-white py-2.5 rounded-xl hover:scale-110 transition">
+            Add
           </a>
 
-          <!-- BUY NOW -->
           <form method="POST" action="{% url 'billproduct' item.id %}" class="w-1/2">
             {% csrf_token %}
-            <button
-              type="submit"
-              class="w-full bg-green-600 text-white py-2 rounded-lg
-                     hover:bg-green-700 transition
-                     focus:outline-none focus:ring-2 focus:ring-green-400">
-              Buy Now
+            <button class="btn w-full bg-gray-900 text-white py-2.5 rounded-xl hover:scale-110 transition">
+              Buy
             </button>
           </form>
-
         </div>
       </div>
+
     </div>
     {% endfor %}
 
   </div>
 </section>
 
-<!-- ================= STYLES ================= -->
-<style>
-  .nav-item {
-    @apply relative cursor-pointer transition hover:text-gray-200
-    after:content-[''] after:absolute after:left-0 after:-bottom-1
-    after:w-0 after:h-[2px] after:bg-white
-    hover:after:w-full after:transition-all;
-  }
-
-  .btn {
-    @apply cursor-pointer px-4 py-1 rounded bg-white text-blue-600
-    shadow hover:shadow-lg transition;
-  }
-
-  .badge {
-    @apply absolute top-3 left-3 bg-blue-600 text-white text-xs
-    font-semibold px-3 py-1 rounded-full;
-  }
-
-  .carousel-btn {
-    @apply absolute top-1/2 -translate-y-1/2
-    bg-white/80 hover:bg-white p-2 rounded-full shadow transition;
-  }
-</style>
-
-<!-- ================= SCRIPT ================= -->
 <script>
-  const carousel = document.getElementById("carousel");
-  let index = 0;
+const carousel = document.getElementById("carousel");
+const images = document.querySelectorAll(".hero-img");
+let index = 0;
 
-  function showSlide() {
-    carousel.style.transform = `translateX(-${index * 100}%)`;
-  }
+function showSlide(){
+  carousel.style.transform = `translateX(-${index * 100}%)`;
+  images.forEach(img => img.classList.remove("active"));
+  images[index].classList.add("active");
+}
 
-  function nextSlide() {
-    index = (index + 1) % 3;
-    showSlide();
-  }
+setInterval(()=>{
+  index = (index + 1) % images.length;
+  showSlide();
+}, 4800);
 
-  function prevSlide() {
-    index = (index - 1 + 3) % 3;
-    showSlide();
-  }
-
-  setInterval(nextSlide, 4000);
+showSlide();
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
