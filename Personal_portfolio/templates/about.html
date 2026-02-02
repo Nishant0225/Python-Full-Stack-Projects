@@ -266,22 +266,6 @@
     <a href="{% url 'index' %}" class="back-btn">
         ← Back to Home
     </a>
-<button class="next-page-btn" onclick="goNextPage()">
-    About Me
-    <i class="fa-solid fa-arrow-right"></i>
-</button>
-<script>
-function goNextPage(){
-    const card = document.querySelector(".page-card");
-    if(!card) return;
-
-    card.classList.add("swipe-left");
-
-    setTimeout(() => {
-        window.location.href = "{% url 'about' %}";
-    }, 400);
-}
-</script>
 
 </div>
 </body>
