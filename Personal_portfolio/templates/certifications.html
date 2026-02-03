@@ -128,6 +128,59 @@ h1 span{
     background:#4f8cff;
     color:#020617;
 }
+/* ================= CODING SKILLS ================= */
+
+.skill-card{
+    background: rgba(255,255,255,0.03);
+    border:1px solid rgba(79,140,255,0.25);
+    border-radius:14px;
+    padding:20px;
+    transition:0.3s;
+}
+
+.skill-card:hover{
+    transform: translateY(-6px);
+    box-shadow: 0 14px 40px rgba(79,140,255,0.25);
+}
+
+.skill-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.skill-header h3{
+    font-size:1rem;
+    color:#f9fafb;
+}
+
+.skill-header span{
+    font-size:0.8rem;
+    color:#4f8cff;
+}
+
+.skill-bar{
+    width:100%;
+    height:8px;
+    background:rgba(255,255,255,0.08);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.skill-progress{
+    height:100%;
+    border-radius:10px;
+    background: linear-gradient(90deg,#4f8cff,#2563eb);
+    width:0;
+    animation: fillBar 1.6s ease forwards;
+}
+
+@keyframes fillBar{
+    from{ width:0; }
+    to{ width:var(--level); }
+}
+
 </style>
 </head>
 
@@ -158,47 +211,6 @@ and extra-curricular activities that reflect my continuous learning and all-roun
 </div>
 </div>
 
-<!-- COMMUNICATION -->
-<div class="section">
-<h2 data-aos="fade-right">Coding Skills</h2>
-
-<div class="grid">
-
-    <div class="card" data-aos="fade-up">
-        <div class="pdf-preview">
-            <img src="{% static 'certificates/thumbs/communication.png' %}" alt="Communication Skills">
-        </div>
-        <h3>Communication Skills</h3>
-        <p>Professional English communication and workplace interaction.</p>
-        <a class="view-btn"
-           href="{% static 'certificates/Nishant communication skills.pdf' %}"
-           target="_blank">View Certificate</a>
-    </div>
-
-    <div class="card" data-aos="fade-up">
-        <div class="pdf-preview">
-            <img src="{% static 'certificates/thumbs/presentation.png' %}" alt="Presentation Skills">
-        </div>
-        <h3>Presentation Skills</h3>
-        <p>Effective presentation delivery and public speaking skills.</p>
-        <a class="view-btn"
-           href="{% static 'certificates/Nishant Presentation Skills.pdf' %}"
-           target="_blank">View Certificate</a>
-    </div>
-
-    <div class="card" data-aos="fade-up">
-        <div class="pdf-preview">
-            <img src="{% static 'certificates/thumbs/softskills.png' %}" alt="Soft Skills">
-        </div>
-        <h3>Soft Skills</h3>
-        <p>Interpersonal skills, teamwork, and professional behavior.</p>
-        <a class="view-btn"
-           href="{% static 'certificates/Nishant Soft Skills.pdf' %}"
-           target="_blank">View Certificate</a>
-    </div>
-
-</div>
-</div>
 <!-- COMMUNICATION -->
 <div class="section">
 <h2 data-aos="fade-right">Communication & Soft Skills</h2>
