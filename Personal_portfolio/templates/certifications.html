@@ -129,6 +129,58 @@ h1 span{
     color:#020617;
 }
 
+/* ================= CODING SKILLS ================= */
+
+.skill-card{
+    background: rgba(255,255,255,0.04);
+    border:1px solid rgba(79,140,255,0.25);
+    border-radius:14px;
+    padding:22px;
+    transition:0.35s ease;
+}
+
+.skill-card:hover{
+    transform: translateY(-8px);
+    box-shadow:0 18px 45px rgba(79,140,255,0.25);
+}
+
+.skill-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
+}
+
+.skill-header h3{
+    font-size:1.05rem;
+    color:#f9fafb;
+}
+
+.skill-header span{
+    font-size:0.8rem;
+    color:#4f8cff;
+}
+
+.skill-bar{
+    width:100%;
+    height:8px;
+    background:rgba(255,255,255,0.08);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.skill-progress{
+    height:100%;
+    width:0;
+    border-radius:10px;
+    background:linear-gradient(90deg,#4f8cff,#2563eb);
+    animation: fillSkill 1.6s ease forwards;
+}
+
+@keyframes fillSkill{
+    from{ width:0; }
+    to{ width:var(--level); }
+}
 
 </style>
 </head>
