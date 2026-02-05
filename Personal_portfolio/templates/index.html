@@ -38,6 +38,8 @@ body{
         width: 100%;
         height: 10vh;
         position: sticky;
+        top: 0;
+        z-index: 1000;
     }
 
     .nav-container{
@@ -152,13 +154,15 @@ body{
     }
 
     /* ================= HERO ================= */
-
-    section{
-        width: 100%;
-        height: 100vh;
-    }
+section{
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    scroll-margin-top: 10vh;
+}
 
     .main-container{
+        position: relative;
         width: 100%;
         height: 100%;
         display: flex;
@@ -167,7 +171,7 @@ body{
     }
 
     .main-container .image{
-        z-index: -1;
+        z-index: 1;
         width: 30%;
     }
 
@@ -459,7 +463,7 @@ section{
         </div>
     </nav>
 
-    <section>
+    <section id="home">
         <div class="main-container">
             <div class="image" data-aos="zoom-in-right" data-aos-duration="2500">
                 <img src="{% static 'photo.png' %}" alt="Nishant" height="550">
@@ -503,9 +507,7 @@ Let's connect and embark on this journey together…🤝</p>
 <section id="projects">
     {% include "projects.html" %}
 </section>
-<section id="projects">
-    {% include "projects.html" %}
-</section>
+
 
 <section id="certificates">
     {% include "certifications.html" %}
@@ -532,8 +534,6 @@ Let's connect and embark on this journey together…🤝</p>
             document.querySelector(".dropdown").style.transform = "translateY(-500px)";
         }
     </script>
-
-</script>
 </div>
 
 </body>
