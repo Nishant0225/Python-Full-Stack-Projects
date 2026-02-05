@@ -490,11 +490,21 @@ Let's connect and embark on this journey together…🤝</p>
 </div>
   
     </section>
-{% include "about.html" %}
-{% include "education.html" %}
-{% include "projects.html" %}
-{% include "certifications.html" %}
-{% include "contact.html" %}
+<section id="about">
+    {% include "about.html" %}
+</section>
+<section id="education">
+    {% include "education.html" %}
+</section>
+<section id="projects">
+    {% include "projects.html" %}
+</section>
+<section id="certificates">
+    {% include "certifications.html" %}
+</section>
+<section id="contact">
+    {% include "contact.html" %}
+</section>
 
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -513,75 +523,7 @@ Let's connect and embark on this journey together…🤝</p>
             document.querySelector(".dropdown").style.transform = "translateY(-500px)";
         }
     </script>
-    <script>
-(function () {
-    let startX = null;
 
-    function start(e) {
-        startX = e.touches ? e.touches[0].clientX : e.clientX;
-    }
-
-    function end(e) {
-        if (startX === null) return;
-
-        const endX = e.changedTouches
-            ? e.changedTouches[0].clientX
-            : e.clientX;
-
-        const diff = startX - endX;
-
-        // Swipe LEFT → About
-        if (diff > 60) {
-            window.location.href = "{% url 'about' %}";
-        }
-
-        startX = null;
-    }
-
-    // Touch (mobile)
-    document.addEventListener("touchstart", start, { passive: true });
-    document.addEventListener("touchend", end, { passive: true });
-
-    // Mouse (desktop testing)
-    document.addEventListener("mousedown", start);
-    document.addEventListener("mouseup", end);
-})();
-</script>
-<script>
-(function () {
-    let startX = null;
-    const card = document.querySelector(".page-card");
-
-    function start(e) {
-        startX = e.touches ? e.touches[0].clientX : e.clientX;
-    }
-
-    function end(e) {
-        if (startX === null) return;
-
-        const endX = e.changedTouches
-            ? e.changedTouches[0].clientX
-            : e.clientX;
-
-        const diff = startX - endX;
-
-        // Swipe RIGHT → Home (optional, for about page)
-        if (diff < -80) {
-            card.classList.add("swipe-right");
-            setTimeout(() => {
-                window.location.href = "{% url 'index' %}";
-            }, 400);
-        }
-
-        startX = null;
-    }
-
-    document.addEventListener("touchstart", start, { passive: true });
-    document.addEventListener("touchend", end, { passive: true });
-
-    document.addEventListener("mousedown", start);
-    document.addEventListener("mouseup", end);
-})();
 </script>
 </div>
 
