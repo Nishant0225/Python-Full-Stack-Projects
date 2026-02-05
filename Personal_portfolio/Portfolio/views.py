@@ -14,8 +14,8 @@ def certifications(request):
 def education(request):
     return render(request, 'education.html')
 
-BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"
-CHAT_ID = "YOUR_CHAT_ID_HERE"
+BOT_TOKEN = "8427869550:AAFj-tSI1-dPCR4y5XPyRHll_IuStlV5v38"
+CHAT_ID = "1932082820"
 
 def contact(request):
     if request.method == "POST":
