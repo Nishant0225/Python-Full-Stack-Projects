@@ -14,8 +14,8 @@ def certifications(request):
 def education(request):
     return render(request, 'education.html')
 
-BOT_TOKEN = "8427869550:AAFj-tSI1-dPCR4y5XPyRHll_IuStlV5v38"
-CHAT_ID = "1932082820"
+BOT_TOKEN = "8427869550:AAFA3vEaNlaiyv0CSquOwIIP7F2JcM6ap8E"
+CHAT_ID = "1932082820"   # put your numeric chat id here
 
 def contact(request):
     if request.method == "POST":
@@ -23,23 +23,24 @@ def contact(request):
         email = request.POST.get("email")
         message = request.POST.get("message")
 
-        text = f"""
-📩 New Contact Message
+        text = (
+            "📩 New Contact Message\n\n"
+            f"👤 Name: {name}\n"
+            f"📧 Email: {email}\n\n"
+            f"💬 Message:\n{message}"
+        )
 
-👤 Name: {name}
-📧 Email: {email}
-
-💬 Message:
-{message}
-        """
-
-        url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-        payload = {
-            "chat_id": CHAT_ID,
-            "text": text
-        }
-
-        requests.post(url, data=payload)
+        try:
+            requests.post(
+                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+                data={
+                    "chat_id": CHAT_ID,
+                    "text": text
+                },
+                timeout=10
+            )
+        except Exception as e:
+            print("Telegram error:", e)
 
         return redirect("index")
 
