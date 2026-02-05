@@ -291,6 +291,7 @@ body{
     @media (max-width:884px){
         body{
             overflow-y: visible;
+            scroll-behavior: smooth;
         }
 
         nav .logo{
@@ -422,6 +423,10 @@ body{
     from{ opacity: 0; transform: translate(-50%,10px); }
     to{ opacity: 1; transform: translate(-50%,0); }
 }
+section{
+    scroll-margin-top: 10vh; /* height of navbar */
+}
+
     </style>
 </head>
 
@@ -444,12 +449,12 @@ body{
         </div>
         <div class="dropdown">
             <div class="links">
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#education">Education</a>
-                <a href="#projects">Projects</a>
-                <a href="#certificates">Certificates</a>
-                <a href="#contact">Contact Us</a>
+               <a href="#about" onclick="cancel()">About</a>
+                <a href="#education" onclick="cancel()">Education</a>
+                <a href="#projects" onclick="cancel()">Projects</a>
+                <a href="#certificates" onclick="cancel()">Certificates</a>
+                <a href="#contact" onclick="cancel()">Contact Us</a>
+
 
                 <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
             </div>
