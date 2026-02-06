@@ -3,3 +3,4 @@ gunicorn
 whitenoise
 dotenv
 psycopg2-binary
+requests
