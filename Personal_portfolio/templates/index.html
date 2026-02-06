@@ -429,6 +429,46 @@ section{
 section{
     scroll-margin-top: 10vh; /* height of navbar */
 }
+/* LeetCode icon – aligned like Font Awesome */
+.leetcode-fa {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 3rem;
+    height: 3rem;
+
+    border: 0.2rem solid #4f8cff;
+    border-radius: 50%;
+
+    margin: 5px 10px;
+    transition: 0.25s ease;
+
+    background-color: transparent;
+}
+
+/* SVG inside */
+.leetcode-fa::before {
+    content: "";
+    width: 1.45rem;
+    height: 1.45rem;
+    background: url("https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/leetcode.svg")
+        no-repeat center;
+    background-size: contain;
+    filter: invert(47%) sepia(92%) saturate(750%) hue-rotate(195deg);
+}
+
+/* Hover – EXACT same as others */
+.leetcode-fa:hover {
+    scale: 1.25;
+    background-color: #4f8cff;
+    filter: drop-shadow(0 8px 20px rgba(79,140,255,0.45));
+}
+
+.leetcode-fa:hover::before {
+    filter: invert(1);
+}
+
 
     </style>
 </head>
@@ -480,7 +520,10 @@ Let's connect and embark on this journey together…🤝</p>
 
                 <div class="social-links" data-aos="flip-down" data-aos-duration="1000" data-aos-delay="1200">
                     <a href="https://github.com/Nishant0225"><i class="fa-brands fa-github"></i></a>
-                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+<a href="https://leetcode.com/your-username/" target="_blank">
+    <span class="leetcode-fa"></span>
+</a>
+
                     <a href="https://www.linkedin.com/in/nishant-kadu-109843290/?originalSubdomain=in"><i class="fa-brands fa-linkedin"></i></a>
                     <a href="https://www.hackerrank.com/profile/nishantkadu7020"><i class="fab fa-hackerrank"></i></a>
                 </div>
