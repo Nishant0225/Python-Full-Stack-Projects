@@ -80,6 +80,15 @@ body{
   opacity:0;
 }
 
+.nav-link:active::before{
+  width:140%;
+  height:140%;
+  opacity:1;
+  transition:
+    width .45s ease,
+    height .45s ease,
+    opacity .6s ease;
+}
 
 
 /* Press down on click */
