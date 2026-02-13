@@ -1,4 +1,3 @@
-
 from django.shortcuts import render,redirect
 from . import models
 from django.contrib.auth.models import User
