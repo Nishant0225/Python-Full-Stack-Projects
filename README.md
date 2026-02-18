@@ -27,7 +27,7 @@ ________________________________________________________________________________
 Project           | Framework | Description
 ----------------- | --------- | -------------------------------------------------------
 BANKAPP           | Flask     | Banking system with account management and transactions
-DjangoEcomApp     | Django    | E-commerce platform with authentication and admin panel
+DjangoEcomApp     | Django    | E-commerce platform with authentication and  panel
 iStoreX           | Django    | Online store with product and order management
 tech_sensai       | Django    | Structured Django application with modular design
 ___________________________________________________________________________________________________________________________________________________
