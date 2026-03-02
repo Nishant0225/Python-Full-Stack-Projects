@@ -27,9 +27,9 @@ This project demonstrates real-world backend development using Django, focusing 
 
 ▶️ Run Locally
 
-git clone https://github.com/Nishant0225Python_Full_stack_Projects.git
+git clone https://github.com/Nishant0225/Python_Full_stack_Projects.git
 
-cd Python_Full_stack_Projects/SENSAI
+cd Python_Full_stack_Projects/tech_sensai
 
 pip install -r requirements.txt
 
