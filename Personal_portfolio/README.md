@@ -58,7 +58,7 @@ The portfolio is deployed live on Render and structured following Django’s MVT
 
 ## ▶️ Run Locally  
 
-git clone https://github.com/Nishant0225/Python_Full_stack_Projects.git
+git clone https://github.com/Nishant0225/Python-Full-Stack-Projects
 
 cd Python_Full_stack_Projects/Personal_portfolio
 
