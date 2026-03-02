@@ -5,3 +5,14 @@ SENSAI is a Django-based web application designed to support career development 
 📌 Overview
 
 This project demonstrates real-world backend development using Django, focusing on authentication workflows, modular application design, and database-driven functionality.
+
+🧠 Key Features
+
+- Google authentication for secure user login
+- Resume management module
+- Career insights module
+- Cover letter management
+- Interview quiz module
+- Modular Django app architecture
+- Django ORM–based database integration
+- Admin panel for backend management
