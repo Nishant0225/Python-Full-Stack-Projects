@@ -16,3 +16,11 @@ This project demonstrates real-world backend development using Django, focusing 
 - Modular Django app architecture
 - Django ORM–based database integration
 - Admin panel for backend management
+
+🛠️ Tech Stack
+
+- Backend: Python, Django  
+- Frontend: HTML, CSS, Bootstrap  
+- Authentication: Google OAuth  
+- Database: SQLite  
+- Tools: Git, GitHub  
