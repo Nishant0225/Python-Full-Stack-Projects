@@ -24,3 +24,15 @@ This project demonstrates real-world backend development using Django, focusing 
 - Authentication: Google OAuth  
 - Database: SQLite  
 - Tools: Git, GitHub  
+
+▶️ Run Locally
+
+git clone https://github.com/tanvi2711/Python_Full_stack_Projects.git
+
+cd Python_Full_stack_Projects/SENSAI
+
+pip install -r requirements.txt
+
+python manage.py migrate
+
+python manage.py runserver
