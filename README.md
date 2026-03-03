@@ -34,7 +34,7 @@ ________________________________________________________________________________
 
 🛠️ Tech Stack
 
-Backend: Python , Django
+Backend: Python , Flask , Django
 
 Frontend: HTML, CSS, Bootstrap, JavaScript
 
